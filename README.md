@@ -7,7 +7,7 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 - Image Upload: Securely upload patient retinal images for analysis.
 - Patient Data Input: Add patient details such as name, date of birth, and medical history to enhance analysis accuracy.
 - Model-Driven Analysis: Utilizes a trained machine learning model to assess the risk of diabetic retinopathy.
-- Results Display: Presents a clear and concise prognosis, helping clinicians make informed decisions. __**(may add onto this later regarding resources and 'what next' after prognosis i.e MayoClinic/NIH API call)**__
+- Results Display: Presents a clear and concise prognosis, helping clinicians make informed decisions. $${\color{red} May\ add\ onto\ this\ later\ regarding\ resources\ and\ 'what next' \ after\ prognosis \ i.e\  MayoClinic \ or  NIH \ API \ call} $$
 
 ## Technology Stack
 - Backend: Python (Django)
@@ -62,10 +62,22 @@ npm install
 ```
 - ** START THE DEVELOPMENT SERVER (JS/REACT? NOT SURE WHAT TO PUT HERE OR FOR GIT BASH)**
 
-**4) 
+**4) Database Configuration :**
+- Ensure MySQL is installed and running.
+- Update the DATABASES setting in settings.py with your MySQL credentials.
+- Create and link the database.
 
+### Usage
+- Access the application locally at http://localhost:8000 for the backend and http://localhost:3000 for the frontend.
+- Upload patient images and enter patient data through the form provided.
+- View the analysis results to assess the risk of diabetic retinopathy.
 
-
+### Testing
+- Run unit tests for the backend
+```bash
+python manage.py test
+```
+- Use Postman to test API endpoints.
   
 
   
