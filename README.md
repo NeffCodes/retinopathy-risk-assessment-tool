@@ -78,6 +78,20 @@ npm install
 python manage.py test
 ```
 - Use Postman to test API endpoints.
+
+
+## Contributing
+We welcome contributions! Please follow the standard GitHub flow for submitting pull requests:
+- Fork the repository.
+- Create a new branch (git checkout -b feature/your-feature-name).
+- Make your changes and commit them (git commit -m 'Add some feature').
+- Push to the branch (git push origin feature/your-feature-name).
+- Open a pull request.
   
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact
+For any questions or inquiries, please contact us at suminmeans@gmail.com or james.m.neff@gmail.com
 
   
