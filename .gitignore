@@ -6,6 +6,10 @@ __pycache__
 db.sqlite3
 media
 
+# Django Migrations #
+*/migrations/*
+!*/migrations/__init__.py
+
 # Backup files # 
 *.bak 
 
@@ -13,7 +17,16 @@ media
 *.py[cod] 
 *$py.class 
 
-# Installer logs 
+# MyPy #
+.mypy_cache/
+
+# Pytest #
+.pytest_cache/
+
+# JetBrains IDE #
+.idea/
+
+# Installer logs #
 pip-log.txt 
 pip-delete-this-directory.txt 
 
