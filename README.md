@@ -7,11 +7,11 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 - Image Upload: Securely upload patient retinal images for analysis.
 - Patient Data Input: Add patient details such as name, date of birth, and medical history to enhance analysis accuracy.
 - Model-Driven Analysis: Utilizes a trained machine learning model to assess the risk of diabetic retinopathy.
-- Results Display: Presents a clear and concise prognosis, helping clinicians make informed decisions. $${\color{red} May\ add\ onto\ this\ later\ regarding\ resources\ and\ 'what next' \ after\ prognosis \ i.e\  MayoClinic \ or  NIH \ API \ call} $$
+- Results Display: Presents a clear and concise prognosis, helping clinicians make informed decisions. $${\color{red} May\ add\ onto\ this\ later\ regarding\ resources\ and\ 'what next' \ after\ prognosis \ i.e\  MayoClinic \ or\   NIH \ API \ call} $$
 
 ## Technology Stack
 - Backend: Python (Django)
-- Frontend: React, Material-UI (or JS + Tailwind CSS)
+- Frontend: React, Material-UI $${\color{red} \ (\ or\  JS\  +\  Tailwind\  CSS\ ) }$$ 
 - Database: MySQL
 - Other Tools:
   - Postman (API testing)
@@ -23,7 +23,7 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 ## Setup and Installation
 ### Prerequisites
 - Python 3.8 or higher
-- Node.js and npm (for frontend development) **NOT SURE ABOUT THIS**
+- Node.js and npm (for frontend development) $${\color{red} \  **NOT \ SURE\  ABOUT\  THIS\ **\ }$$
 - PostgreSQL
 
 ### Installation Steps
@@ -60,7 +60,7 @@ cd frontend
 ```bash
 npm install
 ```
-- ** START THE DEVELOPMENT SERVER (JS/REACT? NOT SURE WHAT TO PUT HERE OR FOR GIT BASH)**
+- $${\color{red} ** START\ THE\ DEVELOPMENT\ SERVER\ (JS/REACT?)\ NOT\ SURE\ WHAT\ TO\ PUT\ HERE\ OR\ FOR\ GIT\ BASH\)** }$$
 
 **4) Database Configuration :**
 - Ensure MySQL is installed and running.
