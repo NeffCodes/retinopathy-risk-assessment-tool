@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),  #Default Django Admin Interface
     path('accounts/', include('allauth.urls')), #Allauth
-    path('retinopathy/', include('retinopathy.urls')), #Url for Retinopathy Project App Itself
+    path('patients/', include('patients.urls')), #Urls for Patient profile
 ]
+
