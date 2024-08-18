@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    path('admin/', admin.site.urls),  #Default Django Admin Interface
+    path('accounts/', include('allauth.urls')), #Allauth
+    path('retinopathy/', include('retinopathy.urls')), #Url for Retinopathy Project App Itself
 ]
