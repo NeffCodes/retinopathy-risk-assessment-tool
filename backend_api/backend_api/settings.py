@@ -155,7 +155,7 @@ AUTHENTICATION_BACKENDS = (
 #     ),
 # }
 
-SITE_ID=1
+SITE_ID = 1
 
 # URL configurations
 LOGIN_REDIRECT_URL = '/'

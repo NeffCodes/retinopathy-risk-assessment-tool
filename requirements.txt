@@ -7,6 +7,7 @@ charset-normalizer==3.3.2
 cycler==0.11.0
 Django==3.2.25
 django-allauth==0.63.6
+django-cors-headers==4.1.0
 flatbuffers==24.3.25
 fonttools==4.38.0
 gast==0.4.0
