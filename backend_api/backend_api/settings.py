@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     # Retino Apps
+    'patients',
 ]
 
 MIDDLEWARE = [
