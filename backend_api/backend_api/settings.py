@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+# import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,24 +36,28 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Third-party apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    'corsheaders',
+
+    # REST Framework
     'rest_framework',
     'rest_framework_simplejwt',
-    'patients',
+
+    # Retino Apps
 ]
 
-SITE_ID=1
-
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', #CORS MiddleWare
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,8 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'allauth.account.middleware.AccountMiddleware', #ALLAUTH Middleware
 ]
 
 ROOT_URLCONF = 'backend_api.urls'
@@ -71,7 +74,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.normpath(os.path.join(BASE_DIR, 'templates')),
+            # os.path.normpath(os.path.join(BASE_DIR, 'templates')),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -80,7 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request'
+                # 'django.template.context_processors.request'
             ],
         },
     },
@@ -142,6 +145,18 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = (
-  'django.contrib.auth.backends.ModelBackend', #fordefault
-  'allauth.account.auth_backends.AuthenticationBackend', #forallauth
+    'django.contrib.auth.backends.ModelBackend', #fordefault
+    'allauth.account.auth_backends.AuthenticationBackend', #forallauth
 )
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ),
+# }
+
+SITE_ID=1
+
+# URL configurations
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
