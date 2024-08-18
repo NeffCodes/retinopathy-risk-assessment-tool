@@ -32,6 +32,20 @@ const baseTheme = responsiveFontSizes(
         color: "rgba(0, 0, 0, 0.38)",
       },
     },
+    palette: {
+    primary: {
+      light: '#8561c5',
+      main: '#673ab7',
+      dark: '#482880',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#4aedc4',
+      main: '#1de9b6',
+      dark: '#14a37f',
+      contrastText: '#000',
+    },
+    }
   })
 );
 

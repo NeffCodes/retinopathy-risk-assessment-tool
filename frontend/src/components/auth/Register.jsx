@@ -32,7 +32,7 @@ const Register = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Username asd asdf asdfdf:</label>
+        <label>Username:</label>
         <input
           type="text"
           value={username}

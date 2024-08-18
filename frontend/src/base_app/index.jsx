@@ -1,4 +1,4 @@
 import App from "./App";
-import LandingPage from "./LandingPage";
+import Shell from "./Shell";
 
-export { App, LandingPage };
+export { App, Shell };
