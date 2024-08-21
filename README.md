@@ -30,7 +30,7 @@ Please note that this is our idea for our tech stack going in.
 This is subject to change as we progress through development.
 
 - **Backend:** Python + Django
-- **Frontend:** Django Views + Tailwind.css  
+- **Frontend:** Django Templates + Tailwind.css  
 - **Database:** SQLite
 - **Other Tools:**
   - Postman (API testing)
