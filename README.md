@@ -60,7 +60,10 @@ cd frontend
 ```bash
 npm install
 ```
-- $${\color{red} ** START\ THE\ DEVELOPMENT\ SERVER\ (JS/REACT?)\ NOT\ SURE\ WHAT\ TO\ PUT\ HERE\ OR\ FOR\ GIT\ BASH\)** }$$
+- Start the development server:
+ ```bash
+npm run dev
+```
 
 **4) Database Configuration :**
 - Ensure MySQL is installed and running.
