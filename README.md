@@ -14,11 +14,26 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 - Backend: Python (Django)
 - Frontend: Javascript, Material-UI, Tailwind CSS
 - Database: SQLite => MySQL
+- Python Libraries:
+  - TensorFlow (for machine learning model)
+  - Keras (for building CNNs)
+  - NumPy (for numerical operations)
+  - Pandas (for data manipulation)
+  - OpenCV (for image processing)
+  - Scikit-learn (for additional machine learning tools)
 - Other Tools:
   - Postman (API testing)
   - Swagger (API documentation)
   - Slack (Team communication)
   - GitHub (Project Management and Version control)
+  - 
+ 
+## Machine Leaning Model
+The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network (CNN) for image classification, specifically trained to identify the risk of diabetic retinopathy from retinal images. The model is built using TensorFlow and Keras libraries, using the power of CNNs to automatically detect features in retinal images that may indicate the presence of diabetic retinopathy.
+
+### Type of Learning
+This project employs supervised learning, where the model is trained on a labeled dataset of retinal images. Each image in the training set is associated with a label indicating the severity of diabetic retinopathy (e.g., No_DR, Mild, Moderate, Severe, Proliferative). The model learns to map input images to these labels, and once trained, it can predict the risk level for new, unseen images.
+
 
 ## Setup and Installation
 ### Prerequisites
