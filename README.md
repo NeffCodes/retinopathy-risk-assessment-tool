@@ -1,97 +1,126 @@
 # Retinopathy Risk Assessment Tool (RRAT)
+
 ## Overview
-The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web application designed to assist clinics in the early detection and assessment of diabetic retinopathy. This tool allows medical professionals to upload patient images and input relevant patient data, receiving a detailed analysis from a machine learning model that predicts the likelihood of the patient developing diabetic retinopathy.
 
+The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web application designed to assist clinics in the early detection and assessment of diabetic retinopathy.
+This tool allows medical professionals to upload patient images and input relevant patient data, receiving a detailed analysis from a machine learning model that predicts the likelihood of the patient developing diabetic retinopathy.
 
-## Features
-- Image Upload: Securely upload patient retinal images for analysis.
-- Patient Data Input: Add patient details such as name, date of birth, and medical history to enhance analysis accuracy.
-- Model-Driven Analysis: Utilizes a trained machine learning model to assess the risk of diabetic retinopathy.
-- Results Display: Presents a clear and concise prognosis, helping clinicians make informed decisions. $${\color{red} May\ add\ onto\ this\ later\ regarding\ resources\ and\ 'what next' \ after\ prognosis \ i.e\  MayoClinic \ or\   NIH \ API \ call} $$
+## Planned Features
+
+This is our current plan / scope for our application.
+We do have additional ideas for stretch goals that are listed below, but are not currently planned.
+
+![Battle Plan](https://res.cloudinary.com/dkcatdj1w/image/upload/v1724276559/gztkivmcbih8wh4nth2d.png)
+
+|||
+| ---      | ---       |
+| **Image Upload** | Securely upload patient retinal images for analysis. |
+| **Patient Data Input** | Add patient details such as name, date of birth, and medical history to enhance analysis accuracy. |
+| **Model-Driven Analysis** | Utilizes a trained machine learning model to assess the risk of diabetic retinopathy. |
+| **Display Results** | Presents a clear and concise prognosis, helping clinicians make informed decisions. |
+
+### Stretch Goal Ideas
+
+- Utilize MayoClinic or NIH APIs to get health information.
+- Using AI prompting to get potential treatment plans on a case-by-case basis.
 
 ## Technology Stack
-- Backend: Python (Django)
-- Frontend: React, Material-UI $${\color{red} \ (\ or\  JS\  +\  Tailwind\  CSS\ ) }$$ 
-- Database: MySQL
-- Other Tools:
+
+Please note that this is our idea for our tech stack going in.
+This is subject to change as we progress through development.
+
+- **Backend:** Python + Django
+- **Frontend:** Django Templates + Tailwind.css  
+- **Database:** SQLite
+- **Other Tools:**
   - Postman (API testing)
-  - Swagger (API documentation)
-  - Trello (Project management)
   - Slack (Team communication)
   - GitHub (Version control)
+  - Github Projects (Project management)
 
 ## Setup and Installation
+
 ### Prerequisites
+
 - Python 3.8 or higher
-- Node.js and npm (for frontend development) $${\color{red} \  **NOT \ SURE\  ABOUT\  THIS\ **\ }$$
-- PostgreSQL
+- Django 5.1 or higher
 
 ### Installation Steps
-**1) Clone the Repository :**
+
+If you haven't already, go ahead and install [python](https://www.python.org/downloads/) and [django](https://www.djangoproject.com/download/).
+
+**1. Clone the Repository :**
+
 ```bash
 git clone https://github.com/NeffCodes/retinopathy-risk-assessment-tool.git
 cd retinopathy-risk-assessment-tool
 ```
-**2) Backend Setup:**
-- Create a viirtual environment and activate it :
+
+**2. Set up your virtual environment:**
+
+- initialize the virtual environment
+
 ```bash
 python -m venv env
-source env/bin/activate  # On Windows use `env\Scripts\activate`
 ```
-- Install the required Python packages :
+
+- activate the virtual environment
+
+```bash
+#Mac Users
+source env/bin/activate
+
+#Windows Users
+source env/Scripts/activate`
+```
+
+**3. Install the required Python packages:**
+
 ```bash
  pip install -r requirements.txt
 ```
-- Set up the database :
+
+**4. Set up the database:**
+
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
-- Run the Django Development Server :
+
+**5. Run the Django Development Server:**
+
 ```bash
 python manage.py runserver
 ```
-**3) Frontend Setup :**
-- Navigate to the frontend directory :
- ```bash
-cd frontend
-```
-- Install the necessary packages :
-```bash
-npm install
-```
-- $${\color{red} ** START\ THE\ DEVELOPMENT\ SERVER\ (JS/REACT?)\ NOT\ SURE\ WHAT\ TO\ PUT\ HERE\ OR\ FOR\ GIT\ BASH\)** }$$
-
-**4) Database Configuration :**
-- Ensure MySQL is installed and running.
-- Update the DATABASES setting in settings.py with your MySQL credentials.
-- Create and link the database.
 
 ### Usage
-- Access the application locally at http://localhost:8000 for the backend and http://localhost:3000 for the frontend.
-- Upload patient images and enter patient data through the form provided.
-- View the analysis results to assess the risk of diabetic retinopathy.
+
+- Access the application locally at http://localhost:8000
 
 ### Testing
-- Run unit tests for the backend
+
+Make sure the server is running. Then run unit tests with:
+
 ```bash
 python manage.py test
 ```
-- Use Postman to test API endpoints.
 
+And use Postman to test API endpoints.
 
 ## Contributing
-We welcome contributions! Please follow the standard GitHub flow for submitting pull requests:
+
+We welcome contributions! Please leave a comment in the issues tab or follow the standard GitHub flow for submitting pull requests:
+
 - Fork the repository.
-- Create a new branch (git checkout -b feature/your-feature-name).
-- Make your changes and commit them (git commit -m 'Add some feature').
-- Push to the branch (git push origin feature/your-feature-name).
+- Create a new branch `git checkout -b feature/your-feature-name`
+- Make your changes and commit them `git commit -m 'Add some feature'`
+- Push to the branch `git push origin feature/your-feature-name`
 - Open a pull request.
   
 ## License
+
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Contact
-For any questions or inquiries, please contact us at suminmeans@gmail.com or james.m.neff@gmail.com
 
-  
+For any other questions or inquiries, please contact us at [Sumi Means](suminmeans@gmail.com) or [James Neff](contact@jamesneff.com)
