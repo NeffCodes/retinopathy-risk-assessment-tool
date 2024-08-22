@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="en" class="h-full bg-gray-100">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +9,69 @@
       Diabetes
     {% endblock %}
   </title>
-  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   <link href="{% static 'css/output.css' %}" rel="stylesheet">
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
   <script src="{% static 'js/main.js' %}" defer></script>
 </head>
-<body>
-  <nav>
-    <a href='/'>Home</a> |
-    <a href='/about'>about</a> |
-    <a href='/patients'>Patients</a> |
-    <a href={% url 'users:register' %}>Register</a> 
+<body class='h-full'>
+<div class="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(235,241,244,.8)_100%)]"></div>
 
-    
+  <nav class="bg-indigo-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <div class="flex items-center">
+          <div class="hidden md:block">
+            <div class="-ml-3 flex items-baseline space-x-4">
+              <a href="/" 
+              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-indigo-800/55 hover:text-white">
+                  Home
+              </a>
+              <a href="/about" 
+              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-indigo-800/55 hover:text-white">
+                  About
+              </a>
+              <a href="/patients" 
+              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-indigo-800/55 hover:text-white">
+                Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:block">
+          <div class="ml-4 flex items-center md:ml-6">
+            <div class="relative ml-3">
+              <a  href='/'
+              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-indigo-800/55 hover:text-white">
+                  Login
+              </a>
+            </div>
+            <div class="relative ml-3">
+              <a  href={% url 'users:register' %} 
+              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-indigo-800/55 hover:text-white">
+                  Register
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
-  <main>
-    {% block content %}
-    {% endblock  %}
 
+  <header class="bg-white shadow">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+        {% block header %}
+        {% endblock header %}
+      </h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      {% block content %}
+      {% endblock content %}
+    </div>
   </main>
 </body>
 </html>
