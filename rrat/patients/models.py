@@ -1,7 +1,14 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class Patient(models.Model):
+    id = models.UUIDField(
+        primary_key=True, 
+        default=uuid.uuid4, 
+        editable=False,
+        unique=True
+    )
     first_name = models.CharField(max_length=75)
     last_name = models.CharField(max_length=75)
     date_of_birth = models.DateField(max_length=8)
@@ -9,7 +16,7 @@ class Patient(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.full_name} - {self.age}"
+        return f"{self.full_name} - {self.age} - {self.id}"
         
     @property
     def age(self):

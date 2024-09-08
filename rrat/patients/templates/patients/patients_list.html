@@ -12,7 +12,9 @@
   <section>
     {% for patient in patients %}
       <div>
-        <h3>{{ patient.full_name }}</h3>
+        <a href="{% url 'patients:patient_page' id=patient.id %}">
+          <h3>{{ patient.full_name }}</h3>
+        </a>
         <p>Age: {{ patient.age }}</p>
       </div>
     {% endfor %}
