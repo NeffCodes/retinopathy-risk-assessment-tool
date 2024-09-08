@@ -3,8 +3,12 @@ from .models import Patient
 from .forms import PatientForm
 
 def patients_list(request):
+  """
+  [CREATE, READ]
+  Patient page to view a full list of patients which also has a section to add new patients.
+  """
   context = {}
-  
+
   # create an object of the form
   form = PatientForm(request.POST or None, request.FILES or None)
 
@@ -22,6 +26,18 @@ def patients_list(request):
 
   return render(request, 'patients/patients_list.html', context)
 
-def patient_page(request, id):
+def view_patient(request, id):
+  """
+  [READ]
+  Patient page to view patient details.
+  """
   patient = Patient.objects.get(id=id)
-  return render(request, 'patients/patient_page.html', { 'patient': patient })
+  return render(request, 'patients/view_patient.html', { 'patient': patient })
+
+def update_patient(request, id):
+  """
+  [UPDATE]
+  Patient page to change patient details
+  """
+  context = {}
+  return render(request, 'patients/update_patient.html')
