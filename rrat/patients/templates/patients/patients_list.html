@@ -10,6 +10,16 @@
 
 {% block content %}
   <section>
+
+  </section>
+    <form class="form-with-validation" action="" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button class='form-submit'>Submit</button>
+    </form>
+  </section>
+  </br>
+  <section>
     {% for patient in patients %}
       <div>
         <a href="{% url 'patients:patient_page' id=patient.id %}">
