@@ -19,4 +19,5 @@
     </div>
   </section>
   <a href="{% url 'patients:patient_update' id=patient.id %}"> Update </a>
+  <a href="{% url 'patients:patient_delete' id=patient.id %}"> Delete </a>
 {% endblock content %}

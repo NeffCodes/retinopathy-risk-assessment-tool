@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient as PatientModel
 from .forms import PatientForm
 
@@ -57,3 +57,20 @@ def update_patient(request, id):
   context["patient"] = patient
 
   return render(request, 'patients/update_patient.html', context)
+
+def delete_patient(request, id):
+  """
+  [DELETE]
+  Removes patient from database.
+  """
+  context = {}
+
+  patient = get_object_or_404(PatientModel, id = id)
+
+  # delete patient and redirect to dashboard
+  if request.method == "POST":
+    patient.delete()
+    return redirect("patients:list")
+  
+  context["patient"] = patient
+  return render(request, "patients/delete_patient.html", context)
