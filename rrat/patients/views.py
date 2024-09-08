@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Patient
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
+from .models import Patient as PatientModel
 from .forms import PatientForm
 
 def patients_list(request):
@@ -18,7 +18,7 @@ def patients_list(request):
       form.save()
 
   # get all patients in db
-  patients = Patient.objects.all().order_by('last_name')
+  patients = PatientModel.objects.all().order_by('last_name')
 
   # set context
   context['form'] = form
@@ -31,7 +31,7 @@ def view_patient(request, id):
   [READ]
   Patient page to view patient details.
   """
-  patient = Patient.objects.get(id=id)
+  patient = PatientModel.objects.get(id=id)
   return render(request, 'patients/view_patient.html', { 'patient': patient })
 
 def update_patient(request, id):
@@ -40,4 +40,20 @@ def update_patient(request, id):
   Patient page to change patient details
   """
   context = {}
-  return render(request, 'patients/update_patient.html')
+
+  # fetch the object related to the provided patient id
+  patient = get_object_or_404(PatientModel, id=id)
+
+  # pass the patient object as an instance into the form
+  form = PatientForm(request.POST or None, instance = patient)
+
+  # validate and save data from the form and redirect to patient_view
+  if form.is_valid():
+    form.save()
+    return redirect("patients:patient_view", id)
+
+  # set context
+  context["form"] = form
+  context["patient"] = patient
+
+  return render(request, 'patients/update_patient.html', context)

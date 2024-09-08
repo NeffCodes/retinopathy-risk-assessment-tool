@@ -10,8 +10,6 @@
 
 {% block content %}
   <section>
-
-  </section>
     <form class="form-with-validation" action="" method="post">
       {% csrf_token %}
       {{ form.as_p }}
@@ -22,7 +20,7 @@
   <section>
     {% for patient in patients %}
       <div>
-        <a href="{% url 'patients:patient_page' id=patient.id %}">
+        <a href="{% url 'patients:patient_view' id=patient.id %}">
           <h3>{{ patient.full_name }}</h3>
         </a>
         <p>Age: {{ patient.age }}</p>

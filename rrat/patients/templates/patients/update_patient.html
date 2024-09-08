@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{patient.full_name}}
+{% endblock title %}
+
+{% block header %}
+    {{patient.full_name}}
+{% endblock header %}
+
+{% block content %}
+    <section>
+        <form class="form-with-validation" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='form-submit'>Update</button>
+        </form>
+    </section>
+{% endblock content %}

@@ -18,4 +18,5 @@
       <p>Date Updated: {{ patient.date_updated }}</p>
     </div>
   </section>
+  <a href="{% url 'patients:patient_update' id=patient.id %}"> Update </a>
 {% endblock content %}
