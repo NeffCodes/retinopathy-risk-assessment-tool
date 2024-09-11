@@ -6,4 +6,10 @@ class PatientForm(forms.ModelForm):
 	# specify the name of model to use
 	class Meta:
 		model = PatientModel
-		fields = "__all__"
+
+		fields = [
+			'first_name',
+			'last_name',
+			'date_of_birth',
+		]
+		# exclude the hidden field

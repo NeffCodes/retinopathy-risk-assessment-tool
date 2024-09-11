@@ -12,11 +12,12 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=75)
     last_name = models.CharField(max_length=75)
     date_of_birth = models.DateField(max_length=8)
+    hidden = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.full_name} - {self.age} - {self.id}"
+        return f"{self.full_name} - {self.id}"
         
     @property
     def age(self):
