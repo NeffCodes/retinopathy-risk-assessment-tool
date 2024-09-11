@@ -61,15 +61,20 @@ def update_patient(request, id):
 def delete_patient(request, id):
   """
   [DELETE]
-  Removes patient from database.
+  Soft deletes patient from database by marking the hidden field as true.
   """
   context = {}
 
+  # retrieve patient
   patient = get_object_or_404(PatientModel, id = id)
 
-  # delete patient and redirect to dashboard
+  # if confirmation modal approved
   if request.method == "POST":
-    patient.delete()
+    # mark as hidden and return to list
+    patient.hidden = True
+
+    # update the db and redirect to patient list dashboard
+    patient.save(update_fields=["hidden"])
     return redirect("patients:list")
   
   context["patient"] = patient
