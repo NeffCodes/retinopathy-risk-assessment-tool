@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient as PatientModel
 from .forms import PatientForm
+from .decorators import check_patient_hidden
 
 def patients_list(request):
   """
@@ -9,7 +10,7 @@ def patients_list(request):
   """
   context = {}
 
-  # create an object of the form
+  # create an object of the patient form to create a new patient
   form = PatientForm(request.POST or None, request.FILES or None)
 
   # check if form data is valid
@@ -17,8 +18,8 @@ def patients_list(request):
       # save the form data to model
       form.save()
 
-  # get all patients in db
-  patients = PatientModel.objects.all().order_by('last_name')
+  # get all patients in db that are not hidden
+  patients = PatientModel.objects.all().exclude(hidden=True).order_by('last_name')
 
   # set context
   context['form'] = form
@@ -26,6 +27,7 @@ def patients_list(request):
 
   return render(request, 'patients/patients_list.html', context)
 
+@check_patient_hidden
 def view_patient(request, id):
   """
   [READ]
@@ -34,6 +36,7 @@ def view_patient(request, id):
   patient = PatientModel.objects.get(id=id)
   return render(request, 'patients/view_patient.html', { 'patient': patient })
 
+@check_patient_hidden
 def update_patient(request, id):
   """
   [UPDATE]
@@ -58,6 +61,7 @@ def update_patient(request, id):
 
   return render(request, 'patients/update_patient.html', context)
 
+@check_patient_hidden
 def delete_patient(request, id):
   """
   [DELETE]
