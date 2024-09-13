@@ -6,7 +6,6 @@ class PatientForm(forms.ModelForm):
 	# specify the name of model to use
 	class Meta:
 		model = PatientModel
-
 		fields = [
 			'first_name',
 			'last_name',

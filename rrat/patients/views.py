@@ -5,7 +5,6 @@ from .decorators import check_patient_hidden
 
 def patients_list(request):
   """
-  [CREATE, READ]
   Patient page to view a full list of patients which also has a section to add new patients.
   """
   context = {}
@@ -30,7 +29,6 @@ def patients_list(request):
 @check_patient_hidden
 def view_patient(request, id):
   """
-  [READ]
   Patient page to view patient details.
   """
   patient = PatientModel.objects.get(id=id)
@@ -39,7 +37,6 @@ def view_patient(request, id):
 @check_patient_hidden
 def update_patient(request, id):
   """
-  [UPDATE]
   Patient page to change patient details
   """
   context = {}
@@ -64,7 +61,6 @@ def update_patient(request, id):
 @check_patient_hidden
 def delete_patient(request, id):
   """
-  [DELETE]
   Soft deletes patient from database by marking the hidden field as true.
   """
   context = {}
