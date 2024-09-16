@@ -3,7 +3,8 @@ module.exports = {
     "./patients/**/*.{html,js}",
     "./templates/**/*.html",
     "./static/**/*.js",
-    "./static/**/*.svg"
+    "./static/**/*.svg",
+    "./**/forms.py"
     ],
   theme: {
     extend: {},
