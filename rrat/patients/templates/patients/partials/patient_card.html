@@ -1,0 +1,10 @@
+{% extends "partials/section.html" %}
+
+{% block content %}
+<article class="">
+    <a href="{% url 'patients:patient_view' id=patient_info.id %}">
+        <h1>{{ patient_info.full_name }}</h1>
+    </a>
+    <p>Age: {{ patient_info.age }}</p>
+</article>
+{% endblock content %}

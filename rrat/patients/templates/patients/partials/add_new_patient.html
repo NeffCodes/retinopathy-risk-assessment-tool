@@ -1,0 +1,9 @@
+{% extends "partials/section.html" %}
+
+{% block content %}
+<form class="form-with-validation" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class='form-submit'>Submit</button>
+</form>
+{% endblock content %}
