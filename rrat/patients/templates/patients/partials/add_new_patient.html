@@ -1,7 +1,6 @@
 {% extends "partials/section.html" %}
 
-{% block content %}
-
+{% block section_content %}
 <form action="" method="post">
 {% csrf_token %}
     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -31,4 +30,4 @@
         </div>
     </div>
 </form>
-{% endblock content %}
+{% endblock section_content %}

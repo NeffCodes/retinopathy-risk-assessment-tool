@@ -1,7 +1,6 @@
 {% extends "partials/section.html" %}
-{% load static %}
 
-{% block content %}
+{% block section_content %}
 <div class="grid gap-4 justify-items-center">
     <article class="inline-flex items-center justify-center w-full gap-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
@@ -25,4 +24,4 @@
 
     <p class="text-xs text-slate-400">{{patient_info.id}}</p>
 </div>
-{% endblock content %}
+{% endblock section_content %}
