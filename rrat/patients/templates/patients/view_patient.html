@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  {{patient.full_name}}
+{% endblock title %}
+
+{% block header %}
+  {{patient.full_name}}
+{% endblock header %}
+
+{% block content %}
+  <section>
+    <div>
+      <p>ID: {{ patient.id }}</p>
+      <p>Age: {{ patient.age }}</p>
+      <p>Date of birth: {{ patient.date_of_birth }}</p>
+      <p>Date Created: {{ patient.date_created }}</p>
+      <p>Date Updated: {{ patient.date_updated }}</p>
+    </div>
+  </section>
+  <a href="{% url 'patients:patient_update' id=patient.id %}"> Update </a>
+  <a href="{% url 'patients:patient_delete' id=patient.id %}"> Delete </a>
+{% endblock content %}

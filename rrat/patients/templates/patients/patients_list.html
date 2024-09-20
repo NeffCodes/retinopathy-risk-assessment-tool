@@ -9,4 +9,23 @@
 {% endblock header %}
 
 {% block content %}
+  <section>
+    <form class="form-with-validation" action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class='form-submit'>Submit</button>
+    </form>
+  </section>
+  </br>
+  <section>
+    {% for patient in patients %}
+      <div>
+        <a href="{% url 'patients:patient_view' id=patient.id %}">
+          <h3>{{ patient.full_name }}</h3>
+        </a>
+        <p>Age: {{ patient.age }}</p>
+      </div>
+      </br>
+    {% endfor %}
+  </section>
 {% endblock content %}
