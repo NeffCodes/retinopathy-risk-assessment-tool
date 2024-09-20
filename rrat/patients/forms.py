@@ -25,3 +25,4 @@ class PatientForm(forms.ModelForm):
 				'class': form_custom_class,
 			}),
 		}
+
