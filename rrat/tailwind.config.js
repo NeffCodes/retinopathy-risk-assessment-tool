@@ -1,14 +1,13 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './templates/**/*.html',
-    './static/**/*.js',
-    './**/templates/**/**/*.html', //added to hopefully cover new apps
-    './**/static/**/**/*.js', //added to hopefully cover new apps
-  ],
+    "./patients/**/*.{html,js}",
+    "./templates/**/*.html",
+    "./static/**/*.js",
+    "./static/**/*.svg",
+    "./**/forms.py"
+    ],
   theme: {
     extend: {},
   },
   plugins: [],
 }
-

@@ -9,7 +9,7 @@
 {% endblock header %}
 
 {% block content %}
-  <section class="container">
+  <section class="px-4 py-6 sm:px-6 lg:px-8 bg-white rounded-md shadow-lg container">
     <form class="form-with-validation" action="/users/register/" method="post">
       {% csrf_token %}
       {{ form }}

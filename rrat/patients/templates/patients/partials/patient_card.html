@@ -1,0 +1,27 @@
+{% extends "partials/section.html" %}
+
+{% block section_content %}
+<div class="grid gap-4 justify-items-center">
+    <article class="inline-flex items-center justify-center w-full gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+        class="size-10 text-green-700 flex-initial bg-green-200 rounded-full p-2"
+        >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+        <div class="flex-1">
+            <h1 class="text-lg font-semibold text-slate-800">{{ patient_info.full_name }}</h1>
+            <p class="text-sm font-normal text-slate-500">Age: {{ patient_info.age }}</p>
+        </div>
+    </article>
+
+    <a href="{% url 'patients:patient_view' id=patient_info.id %}"
+    class="w-full px-4 py-2.5 relative rounded group overflow-hidden font-medium bg-white text-teal-600  border-solid border-teal-600 border flex items-center justify-center"
+    >
+        <span class="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-teal-600 group-hover:h-full opacity-90 z-0">
+        </span>
+        <span class="relative group-hover:text-white">View Profile</span>
+    </a>
+
+    <p class="text-xs text-slate-400">{{patient_info.id}}</p>
+</div>
+{% endblock section_content %}
