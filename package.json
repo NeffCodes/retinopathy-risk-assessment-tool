@@ -1,0 +1,23 @@
+{
+  "name": "retinopathy-risk-assessment-tool",
+  "version": "1.0.0",
+  "description": "The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web application designed to assist clinics in the early detection and assessment of diabetic retinopathy. This tool allows medical professionals to upload patient images and input relevant patient data, receiving a detailed analysis from a machine learning model that predicts the likelihood of the patient developing diabetic retinopathy.",
+  "main": "postcss.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeffCodes/retinopathy-risk-assessment-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeffCodes/retinopathy-risk-assessment-tool/issues"
+  },
+  "homepage": "https://github.com/NeffCodes/retinopathy-risk-assessment-tool#readme"
+}
