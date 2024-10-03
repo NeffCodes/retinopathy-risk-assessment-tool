@@ -15,6 +15,7 @@ class Patient(models.Model):
     hidden = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    avatar = models.ImageField(default='fallback.png', blank=True)
 
     def __str__(self):
         return f"{self.full_name} - {self.id}"

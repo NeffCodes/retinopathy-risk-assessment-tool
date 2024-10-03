@@ -11,6 +11,9 @@
 
 {% block content %}
   <section class="px-4 py-6 sm:px-6 lg:px-8 bg-white rounded-md shadow-lg">
-  <h2 class="text-3xl/loose font-bold tracking-tight text-indigo-950">Welcome!</h2>
+    <h2 class="text-3xl/loose font-bold tracking-tight text-indigo-950">Welcome!</h2>
+    {% for photo in photos  %}
+      <img src={{photo.image.url}} />
+    {% endfor %}
   </section>
 {% endblock content %}
