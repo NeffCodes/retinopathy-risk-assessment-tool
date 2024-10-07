@@ -1,10 +1,10 @@
 from django.forms import ModelForm      
 from cloudinary.forms import CloudinaryFileField      
-from .models import Photo
+from .models import RetinaPhoto
 
 class PhotoForm(ModelForm):
     class Meta:
-        model = Photo
+        model = RetinaPhoto
         fields = '__all__'
 
     image = CloudinaryFileField(

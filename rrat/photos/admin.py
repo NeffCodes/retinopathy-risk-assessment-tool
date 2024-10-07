@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Photo as PhotoModel
+from .models import RetinaPhoto as RetinaPhotoModel
 
 # Register model
-admin.site.register(PhotoModel)
+admin.site.register(RetinaPhotoModel)

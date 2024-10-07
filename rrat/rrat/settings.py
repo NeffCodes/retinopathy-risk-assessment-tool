@@ -140,8 +140,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'                           # where to find the images directory
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # where the directory will be
 
-print(CLOUDINARY_API_KEY, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_SECRET)
-
 cloudinary.config(
     cloud_name =  CLOUDINARY_CLOUD_NAME,
     api_key = CLOUDINARY_API_KEY,

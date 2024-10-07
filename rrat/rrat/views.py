@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from photos.models import Photo
+from photos.models import RetinaPhoto
 
 def homepage(request):
-  photos = Photo.objects.all()  
+  photos = RetinaPhoto.objects.all()  
   context = {"photos":photos}
 
   return render(request, 'home.html', context)
