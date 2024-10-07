@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
+import cloudinary.uploader
 
 def patients_list(request):
   """
@@ -14,9 +15,26 @@ def patients_list(request):
 
   # check if form data is valid
   if form.is_valid():
-      # save the form data to model
-      form.save()
-      return redirect("patients:list")
+    # get data from form instance
+    patient_instance = form.save(commit=False) # don't save the form yet
+
+    if request.FILES.get('avatar'):
+      image_file = request.FILES['avatar']
+
+      # Upload the image to Cloudinary with transformations
+      result = cloudinary.uploader.upload(
+        image_file,
+        transformation=[
+          {"width": 300, "height": 300, "crop": "fill", "quality": "auto", "gravity": "auto"}
+        ],
+        folder='rrat/avatars'
+      )
+
+      # Set the image URL to the patient instance
+      patient_instance.avatar = result['url']
+
+    patient_instance.save()
+    return redirect("patients:list")
   else:
     print(form.errors)
 

@@ -16,7 +16,7 @@ class Patient(models.Model):
     hidden = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    avatar = CloudinaryField('avatar', null=False, blank=True, folder='rrat/avatars', default='https://res.cloudinary.com/rrat-dkcatdj1w/image/upload/v1728327245/default_avatar.svg')
+    avatar = CloudinaryField('avatar', null=True, blank=True, folder='rrat/avatars')
 
     def __str__(self):
         return f"{self.full_name} - {self.id}"

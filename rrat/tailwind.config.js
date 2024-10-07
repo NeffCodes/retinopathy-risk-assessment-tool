@@ -1,6 +1,7 @@
 module.exports = {
   content: [
-    "./patients/**/*.{html,js}",
+    "./patients/templates/**/*.{html,js}",
+    "./patients/templates/partials/**/*.{html,js}",
     "./templates/**/*.html",
     "./static/**/*.js",
     "./static/**/*.svg",
