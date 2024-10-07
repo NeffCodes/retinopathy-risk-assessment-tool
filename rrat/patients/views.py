@@ -17,7 +17,8 @@ def patients_list(request):
       # save the form data to model
       form.save()
       return redirect("patients:list")
-
+  else:
+    print(form.errors)
 
   # get all patients in db that are not hidden
   patients = PatientModel.objects.all().exclude(hidden=True).order_by('last_name')

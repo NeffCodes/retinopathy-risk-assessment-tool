@@ -12,6 +12,7 @@ class PatientForm(forms.ModelForm):
 			'first_name',
 			'last_name',
 			'date_of_birth',
+			'avatar',
 		]
 		widgets = {
 			'first_name': forms.TextInput(attrs={
@@ -22,6 +23,9 @@ class PatientForm(forms.ModelForm):
 			}),
 			'date_of_birth': forms.TextInput(attrs={
 				'type': 'date',
+				'class': form_custom_class,
+			}),
+			'avatar': forms.ClearableFileInput(attrs={
 				'class': form_custom_class,
 			}),
 		}
