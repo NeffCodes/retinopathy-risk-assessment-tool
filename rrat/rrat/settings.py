@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+import cloudinary
+import cloudinary.api
+import cloudinary.uploader
+
+# Load environment variables from .env file
+load_dotenv()
+
+CLOUDINARY_CLOUD_NAME=os.getenv('CLOUDINARY_CLOUD_NAME')
+CLOUDINARY_API_KEY=os.getenv('CLOUDINARY_API_KEY')
+CLOUDINARY_API_SECRET=os.getenv('CLOUDINARY_API_SECRET')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'patients',
     'users',
+    'photos',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +135,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Images
+MEDIA_URL = '/media/'                           # where to find the images directory
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    # where the directory will be
+
+# Cloudinary setup configuration
+cloudinary.config(
+    cloud_name =  CLOUDINARY_CLOUD_NAME,
+    api_key = CLOUDINARY_API_KEY,
+    api_secret = CLOUDINARY_API_SECRET
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
