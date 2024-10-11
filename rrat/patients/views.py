@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.utils.timezone import now
 from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
 import cloudinary.uploader
+from .helpers import *
 
 def patients_list(request):
   """
@@ -23,10 +23,8 @@ def patients_list(request):
     if request.FILES.get('avatar'):
       image_file = request.FILES['avatar']
 
-      # Create the public ID 
-      date_str = now().strftime("%Y-%m-%d--%H:%M")
-      custom_public_id = f"{patient_instance.last_name}-{patient_instance.first_name[0]}-{str(patient_instance.id)}-{date_str}"
-      patient_instance.cloudinary_public_id = custom_public_id
+      # Set the new public ID 
+      set_cloudinary_public_id(patient_instance)
 
       # Upload the image to Cloudinary with transformations
       result = cloudinary.uploader.upload(
