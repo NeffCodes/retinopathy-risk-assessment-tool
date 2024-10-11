@@ -3,7 +3,7 @@ from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
 import cloudinary.uploader
-from .helpers import *
+from .cloudinary_helpers import *
 
 def patients_list(request):
   """
@@ -27,14 +27,7 @@ def patients_list(request):
       set_cloudinary_public_id(patient_instance)
 
       # Upload the image to Cloudinary with transformations
-      result = cloudinary.uploader.upload(
-        image_file,
-        public_id = patient_instance.cloudinary_public_id,
-        transformation=[
-          {"width": 300, "height": 300, "crop": "fill", "quality": "auto", "gravity": "auto"}
-        ],
-        folder='rrat/avatars'
-      )
+      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id, 'rrat/avatars')
 
       # Set the image URL to the patient instance
       patient_instance.avatar = result['url']
@@ -73,12 +66,43 @@ def update_patient(request, id):
   patient = get_object_or_404(PatientModel, id=id)
 
   # pass the patient object as an instance into the form
-  form = PatientForm(request.POST or None, instance = patient)
+  form = PatientForm(request.POST or None, request.FILES or None, instance = patient)
+
 
   # validate and save data from the form and redirect to patient_view
   if form.is_valid():
-    form.save()
+    # get data from form instance
+    patient_instance = form.save(commit=False) # don't save the form yet
+
+    # If instance has an image, update image info
+    if request.FILES.get('avatar'):
+      image_file = request.FILES['avatar']
+
+      # Remove old image
+      cloud = destroy_cloudinary_image(patient_instance.cloudinary_public_id)
+                
+      if cloud.get('result') == 'not found':
+          print("Image not found in Cloudinary. Check the public ID and folder structure.")
+
+      if cloud.get('result') == "error":
+          print("Error trying to delete the image on cloudinary:")
+          print(cloud.message)
+
+      if cloud.get('result') == 'ok':
+        # Set a new public ID 
+        set_cloudinary_public_id(patient_instance)
+
+        # Upload the new image to Cloudinary
+        result = upload_cloudinary_avatar(image_file,patient_instance.cloudinary_public_id,'rrat/avatars')
+
+        # Set the image URL to the patient instance
+        patient_instance.avatar = result['url']
+
+    # Save patient
+    patient_instance.save()
     return redirect("patients:patient_view", id)
+  else:
+    print(form.errors)
 
   # set context
   context["form"] = form

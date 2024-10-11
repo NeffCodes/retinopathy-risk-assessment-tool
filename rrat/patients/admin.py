@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Patient as PatientModel
-import cloudinary.uploader
+from .cloudinary_helpers import destroy_cloudinary_image
 
 class PatientModelAdmin(admin.ModelAdmin):
     actions = ['delete_model']
@@ -29,10 +29,8 @@ class PatientModelAdmin(admin.ModelAdmin):
                 public_id = obj.cloudinary_public_id
                 print(f"Public ID: {public_id}")
 
-                # Full path should be constructed only if needed
-                cloud = cloudinary.uploader.destroy(f"rrat/avatars/{public_id}")
-                print(f"Cloudinary Response: {cloud}")
-                
+                cloud = destroy_cloudinary_image(public_id)
+                            
                 if cloud.get('result') == 'not found':
                     print("Image not found in Cloudinary. Check the public ID and folder structure.")
 
