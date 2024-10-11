@@ -34,3 +34,8 @@ class Patient(models.Model):
     def full_name(self):
         """Returns the person's full name separated by a comma"""
         return f"{self.last_name}, {self.first_name}"
+
+    @property
+    def cloudinary_public_id(self):
+        """Returns the public ID set for the avatar image in Cloudinary"""
+        return f"{self.last_name}-{str(self.id)}"

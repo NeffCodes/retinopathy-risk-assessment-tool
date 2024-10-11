@@ -24,6 +24,7 @@ def patients_list(request):
       # Upload the image to Cloudinary with transformations
       result = cloudinary.uploader.upload(
         image_file,
+        public_id = patient_instance.cloudinary_public_id,
         transformation=[
           {"width": 300, "height": 300, "crop": "fill", "quality": "auto", "gravity": "auto"}
         ],

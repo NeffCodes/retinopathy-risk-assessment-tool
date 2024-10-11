@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from cloudinary.forms import cl_init_js_callbacks      
-from .models import Photo
+from .models import RetinaPhotoPhoto
 from .forms import PhotoForm
 
 def upload(request):
