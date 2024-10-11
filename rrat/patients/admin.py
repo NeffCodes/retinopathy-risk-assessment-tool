@@ -22,23 +22,34 @@ class PatientModelAdmin(admin.ModelAdmin):
     def delete_model(self, request, obj):
         print(f"===== Deleting Patient: {obj}")
 
-        try:
-            # Ensure that obj.cloudinary_public_id contains only the ID, not the path
-            public_id = obj.cloudinary_public_id
-            print(f"Public ID: {public_id}")
+        # Verify if patient has profile picture
+        if obj.avatar:
+            try:
+                # Ensure that obj.cloudinary_public_id contains only the ID, not the path
+                public_id = obj.cloudinary_public_id
+                print(f"Public ID: {public_id}")
 
-            # Full path should be constructed only if needed
-            cloud = cloudinary.uploader.destroy(f"rrat/avatars/{public_id}")
-            print(f"Cloudinary Response: {cloud}")
-            
-            if cloud.get('result') == 'not found':
-                print("Image not found in Cloudinary. Check the public ID and folder structure.")
-            
-            # If image is successfully removed, delete patient object from database.
-            if cloud.get('result') == 'ok':
-                obj.delete()
-        except Exception as e:
-            print(f"Error trying to delete image in Cloudinary: {e}")
+                # Full path should be constructed only if needed
+                cloud = cloudinary.uploader.destroy(f"rrat/avatars/{public_id}")
+                print(f"Cloudinary Response: {cloud}")
+                
+                if cloud.get('result') == 'not found':
+                    print("Image not found in Cloudinary. Check the public ID and folder structure.")
+
+                if cloud.get('result') == "error":
+                    print("Error trying to delete the image on cloudinary:")
+                    print(cloud.message)
+
+                # If image is successfully removed, delete patient object from database.
+                if cloud.get('result') == 'ok':
+                    obj.delete()
+                    print('Patient deleted')
+            except Exception as e:
+                print(f"Error trying to delete image in Cloudinary: {e}")
+        else:
+            print("Patient does not have a profile picture")
+            obj.delete()
+            print('Patient deleted')
 
         print(f"===== end of deleting")
 
