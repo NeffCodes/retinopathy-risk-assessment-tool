@@ -5,11 +5,14 @@ import cloudinary.uploader
 class PatientModelAdmin(admin.ModelAdmin):
     actions = ['delete_model']
     
+    readonly_fields = ("cloudinary_public_id",)
+
     # What shows up on the admin panel list
     list_display = ("id","first_name","last_name","hidden","date_created","date_updated", 'avatar')
 
     # what shows up when you edit or add a patient via the admin panel
-    fields = ("first_name","last_name","date_of_birth","hidden", "avatar")
+    fields = ("first_name","last_name","date_of_birth","hidden", "avatar", "cloudinary_public_id")
+
 
     """
     Custom admin delete method that allows us to also delete image from Cloudinary Database. 

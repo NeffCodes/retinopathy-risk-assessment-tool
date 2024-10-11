@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 import uuid
 from cloudinary.models import CloudinaryField
 
@@ -38,4 +39,8 @@ class Patient(models.Model):
     @property
     def cloudinary_public_id(self):
         """Returns the public ID set for the avatar image in Cloudinary"""
-        return f"{self.last_name}-{self.first_name[0]}-{str(self.id)}-{str(self.date_created)}"
+        if self.date_created:
+            date_str = self.date_created.strftime("%Y-%m-%d--%H:%M")
+        else:
+            date_str = now().strftime("%Y-%m-%d--%H:%M")
+        return f"{self.last_name}-{self.first_name[0]}-{str(self.id)}-{date_str}"
