@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils.timezone import now
 from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
@@ -18,8 +19,14 @@ def patients_list(request):
     # get data from form instance
     patient_instance = form.save(commit=False) # don't save the form yet
 
+    # If instance has an image
     if request.FILES.get('avatar'):
       image_file = request.FILES['avatar']
+
+      # Create the public ID 
+      date_str = now().strftime("%Y-%m-%d--%H:%M")
+      custom_public_id = f"{patient_instance.last_name}-{patient_instance.first_name[0]}-{str(patient_instance.id)}-{date_str}"
+      patient_instance.cloudinary_public_id = custom_public_id
 
       # Upload the image to Cloudinary with transformations
       result = cloudinary.uploader.upload(
@@ -34,6 +41,7 @@ def patients_list(request):
       # Set the image URL to the patient instance
       patient_instance.avatar = result['url']
 
+    # Save patient
     patient_instance.save()
     return redirect("patients:list")
   else:

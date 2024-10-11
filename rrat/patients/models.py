@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.timezone import now
+
 import uuid
 from cloudinary.models import CloudinaryField
 
@@ -18,6 +18,7 @@ class Patient(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     avatar = CloudinaryField('avatar', null=True, blank=True, folder='rrat/avatars')
+    cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.full_name} - {self.id}"
@@ -35,12 +36,3 @@ class Patient(models.Model):
     def full_name(self):
         """Returns the person's full name separated by a comma"""
         return f"{self.last_name}, {self.first_name}"
-
-    @property
-    def cloudinary_public_id(self):
-        """Returns the public ID set for the avatar image in Cloudinary"""
-        if self.date_created:
-            date_str = self.date_created.strftime("%Y-%m-%d--%H:%M")
-        else:
-            date_str = now().strftime("%Y-%m-%d--%H:%M")
-        return f"{self.last_name}-{self.first_name[0]}-{str(self.id)}-{date_str}"
