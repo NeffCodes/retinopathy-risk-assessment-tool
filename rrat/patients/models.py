@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Patient(models.Model):
@@ -15,6 +16,7 @@ class Patient(models.Model):
     hidden = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    avatar = CloudinaryField('avatar', null=True, blank=True, folder='rrat/avatars')
 
     def __str__(self):
         return f"{self.full_name} - {self.id}"
@@ -32,3 +34,8 @@ class Patient(models.Model):
     def full_name(self):
         """Returns the person's full name separated by a comma"""
         return f"{self.last_name}, {self.first_name}"
+
+    @property
+    def cloudinary_public_id(self):
+        """Returns the public ID set for the avatar image in Cloudinary"""
+        return f"{self.last_name}-{self.first_name[0]}-{str(self.id)}-{str(self.date_created)}"
