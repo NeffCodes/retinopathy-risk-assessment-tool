@@ -3,10 +3,10 @@ from .models import RetinaPhoto as RetinaPhotoModel
 
 class RetinaPhotoAdmin(admin.ModelAdmin):
     # What shows up on the admin panel list
-    list_display = ("id")
+    list_display = ("id",)
 
     # what shows up when you edit or add a patient via the admin panel
-    fields = ("id")
+    fields = ("id",)
 
     
 # Register your models here.
