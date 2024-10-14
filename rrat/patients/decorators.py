@@ -8,9 +8,11 @@ def check_patient_hidden(view_func):
     TODO: Update 404 redirect to actual 404 page once created.
     """
     def wrapper(request, *args, **kwargs):
-        patient = PatientModel.objects.get(id = kwargs["id"])
-        if not patient:
-            return Http404('patient not found')
+        try:
+            patient = PatientModel.objects.get(id = kwargs["id"])
+        except PatientModel.DoesNotExist:
+        #  if not patient
+            raise Http404('Patient not found')
     
         if patient.hidden:
             raise Http404('Patient does not exist')

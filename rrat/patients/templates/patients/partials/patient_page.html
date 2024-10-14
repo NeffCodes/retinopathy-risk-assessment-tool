@@ -16,8 +16,16 @@
     </div>
     
     <hr class="mb-6 mt-2 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
+    
+    {% if patient_info.avatar %}
+    <img class="rounded"
+        src="{{patient_info.avatar.url}}" 
+        alt="{{patient_info.first_name}} {{patient_info.last_name}}'s avatar"
+        />
+    {% endif %}
 
     <h2 class="text-lg font-semibold text-teal-600">{{patient_info.first_name}} {{patient_info.last_name}}'s Information</h2>
+
 
     <div>
         <p>
@@ -49,8 +57,5 @@
                 {{ patient_info.date_updated }}
         </p>
     </div>
-
-
-    
 <div>
 {% endblock section_content%}

@@ -3,11 +3,19 @@
 {% block section_content %}
 <div class="grid gap-4 justify-items-center">
     <article class="inline-flex items-center justify-center w-full gap-4">
+
+        {% if patient_info.avatar %}
+        <img class="size-10 rounded-full ring-2 ring-green-300 bg-green-200"
+            src="{{patient_info.avatar.url}}" 
+            alt="{{patient_info.full_name}}'s avatar"
+            />
+        {% else %}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
-        class="size-10 text-green-700 flex-initial bg-green-200 rounded-full p-2"
+        class="size-10 text-green-700 flex-initial ring-2 ring-green-300 bg-green-200 rounded-full p-2"
         >
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
         </svg>
+        {% endif %}
         <div class="flex-1">
             <h1 class="text-lg font-semibold text-slate-800">{{ patient_info.full_name }}</h1>
             <p class="text-sm font-normal text-slate-500">Age: {{ patient_info.age }}</p>

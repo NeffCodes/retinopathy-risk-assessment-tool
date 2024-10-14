@@ -5,13 +5,14 @@ form_custom_class = "block w-full rounded-md border-0 py-2 px-4 text-gray-900 sh
 
 # create a ModelForm
 class PatientForm(forms.ModelForm):
-	# specify the name of model to use
+
 	class Meta:
 		model = PatientModel
 		fields = [
 			'first_name',
 			'last_name',
 			'date_of_birth',
+			'avatar',
 		]
 		widgets = {
 			'first_name': forms.TextInput(attrs={
@@ -24,5 +25,7 @@ class PatientForm(forms.ModelForm):
 				'type': 'date',
 				'class': form_custom_class,
 			}),
+			'avatar': forms.ClearableFileInput(attrs={
+				'class': form_custom_class,
+			}),
 		}
-

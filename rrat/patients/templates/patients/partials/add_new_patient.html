@@ -1,7 +1,7 @@
 {% extends "partials/section.html" %}
 
 {% block section_content %}
-<form action="" method="post">
+<form action="" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-3">
@@ -22,6 +22,13 @@
             <label for="{{form.date_of_birth.id_for_label}}" class="block text-sm font-medium leading-6 text-gray-900 capitalize">{{form.date_of_birth.label}}</label>
             <div class="mt-2">
                 {{form.date_of_birth}}
+            </div>
+        </div>
+        
+        <div class="sm:col-span-3">
+            <label for="{{form.avatar.id_for_label}}" class="block text-sm font-medium leading-6 text-gray-900 capitalize">{{form.avatar.label}}</label>
+            <div class="mt-2">
+                {{form.avatar}}
             </div>
         </div>
 

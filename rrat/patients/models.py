@@ -1,5 +1,7 @@
 from django.db import models
+
 import uuid
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Patient(models.Model):
@@ -15,6 +17,8 @@ class Patient(models.Model):
     hidden = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    avatar = CloudinaryField('avatar', null=True, blank=True, folder='rrat/avatars')
+    cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.full_name} - {self.id}"
