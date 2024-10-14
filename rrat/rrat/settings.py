@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'patients',
     'users',
     'cloudinary',
+    'retina_photos',
 ]
 
 MIDDLEWARE = [
