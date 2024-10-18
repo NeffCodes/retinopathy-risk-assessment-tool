@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import localtime
 import uuid
 from patients.models import Patient
 from cloudinary.models import CloudinaryField
@@ -43,7 +44,15 @@ class RetinaPhoto(models.Model):
         blank=False, 
         folder='rrat/retina_photos'
     )
-    cloudinary_public_id = ""
+    cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.id
+    
+    def save(self, *args, **kwargs):
+        # check if cloudinary has been previously set
+        if not self.cloudinary_public_id:  
+            # Convert date_created to local timezone and format it
+            date_str = localtime(self.date_created).strftime('%Y-%m-%d')
+            self.cloudinary_public_id = f"{self.position}-{self.id}-{date_str}"
+        super().save(*args, **kwargs)
