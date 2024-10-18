@@ -2,19 +2,10 @@ from django.db import models
 import uuid
 from patients.models import Patient
 from cloudinary.models import CloudinaryField
+from choices import *
 
 # Create your models here.
 class RetinaPhoto(models.Model):
-    # Choices ============
-    POSITION_LEFT = 'left'
-    POSITION_RIGHT = 'right'
-    POSITION_CHOICES = {POSITION_LEFT: 'Left', POSITION_RIGHT: 'Right'}
-    STATUS_UNPROCESSED = 'unprocessed'
-    STATUS_PENDING = 'pending'
-    STATUS_DONE = 'done'
-    STATUS_CHOICES = { STATUS_UNPROCESSED: 'Unprocessed', STATUS_PENDING: 'Pending', STATUS_DONE: 'Done'}
-    
-    # Model Fields =======
     id = models.UUIDField(
         primary_key=True, 
         default=uuid.uuid4, 
@@ -30,8 +21,22 @@ class RetinaPhoto(models.Model):
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    position = models.CharField(max_length=5, choices=POSITION_CHOICES)
-    status = models.CharField(max_lenght=20, choices=STATUS_CHOICES, default=STATUS_UNPROCESSED)
+    position = models.CharField(
+        max_length=5, 
+        choices=PositionChoices.choices
+    )
+    status = models.CharField(
+        max_length=20, 
+        choices=StatusChoices.choices, 
+        default=StatusChoices.UNPROCESSED
+    )
+    prognosis = models.CharField(
+        max_length=20, 
+        choices=PrognosisChoices.choices, 
+        default=None,
+        null=True,
+        blank=True
+    )
     image = CloudinaryField(
         'image', 
         null=False, 
