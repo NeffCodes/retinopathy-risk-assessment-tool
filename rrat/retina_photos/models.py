@@ -13,13 +13,13 @@ class RetinaPhoto(models.Model):
         editable=False,
         unique=True
     )
-    patient_id = models.ForeignKey(
+    patient = models.ForeignKey(
         Patient,
-        on_delete=models.CASCADE,       # Will remove all photos tied to a patient if the patient is deleted
-        related_name='retina_photos',   # Allows accessing all photo scans related to a patient via patient.photo_scans.all()
-        null=False,                     # Makes it so a photo can not exist without a patient
-        blank=False,                    # Makes it so the form can not save ntil a patient is set
-        db_column="patient_id"          # Set the column name to patient id, otherwise it will add '_id'
+        on_delete=models.CASCADE,
+        related_name='retina_photos',
+        null=False,
+        blank=False,
+        db_column='patient_id'
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
@@ -47,15 +47,17 @@ class RetinaPhoto(models.Model):
     )
     cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
-    def __str__(self):
-        return self.id
-    
     def save(self, *args, **kwargs):
         # check if cloudinary has been previously set
         if not self.cloudinary_public_id:  
             # Convert date_created to local timezone and format it
             date_str = localtime(self.date_created).strftime('%Y-%m-%d')
-            self.cloudinary_public_id = f"{self.position}-{self.id}-{date_str}"
+            self.cloudinary_public_id = f"{self.position}---{self.id}---{date_str}"
         super().save(*args, **kwargs)
+
+    # Return string
+    def __str__(self):
+        return f"Patient: {self.patient.full_name if self.patient else 'Nobdy'}, Photo ID: {self.id}"
+
     class Meta:
         db_table = 'retina_photos'  
