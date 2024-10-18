@@ -4,6 +4,7 @@ import uuid
 from patients.models import Patient
 from cloudinary.models import CloudinaryField
 from .choices import PositionChoices, StatusChoices, PrognosisChoices
+from django.utils.html import mark_safe
 
 # Create your models here.
 class RetinaPhoto(models.Model):
@@ -43,21 +44,24 @@ class RetinaPhoto(models.Model):
         'image', 
         null=False, 
         blank=False, 
-        folder='rrat/retina_photos'
+        folder='rrat/retina_photos',
     )
     cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        # check if cloudinary has been previously set
         if not self.cloudinary_public_id:  
             # Convert date_created to local timezone and format it
             date_str = localtime(self.date_created).strftime('%Y-%m-%d')
+            # Create the public ID
             self.cloudinary_public_id = f"{self.position}---{self.id}---{date_str}"
         super().save(*args, **kwargs)
+    
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="150" height="150" />' % (self.image.url))
 
     # Return string
     def __str__(self):
-        return f"Patient: {self.patient.full_name if self.patient else 'Nobdy'}, Photo ID: {self.id}"
+        return f"Patient: {self.patient.full_name if self.patient else 'Nobody'} --- Photo ID: {self.id}"
 
     class Meta:
         db_table = 'retina_photos'  
