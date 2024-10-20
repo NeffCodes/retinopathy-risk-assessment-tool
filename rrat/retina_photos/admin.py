@@ -15,5 +15,6 @@ class RetinaPhotoAdmin(admin.ModelAdmin):
         return obj.patient.full_name
     patient_name.short_description = 'Patient Name'
 
+
 # Register your models here.
 admin.site.register(RetinaPhotoModel, RetinaPhotoAdmin)

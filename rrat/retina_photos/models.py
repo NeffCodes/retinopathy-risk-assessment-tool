@@ -6,6 +6,7 @@ from cloudinary.models import CloudinaryField
 from .choices import PositionChoices, StatusChoices, PrognosisChoices
 from django.utils.html import mark_safe
 
+
 # Create your models here.
 class RetinaPhoto(models.Model):
     id = models.UUIDField(
