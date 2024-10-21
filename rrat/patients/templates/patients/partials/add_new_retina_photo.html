@@ -1,0 +1,28 @@
+{% extends "partials/section.html" %}
+
+{% block section_content %}
+<h2 class="text-lg font-semibold text-teal-600">Add New Retina Scan</h2>
+
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-1">
+            <label for="{{form.position.id_for_label}}" class="block text-sm font-medium leading-6 text-gray-900 capitalize">{{form.position.label}}</label>
+            <div class="mt-2">
+                {{form.position}}
+            </div>
+        </div>
+
+        <div class="sm:col-span-3">
+            <label for="{{form.image.id_for_label}}" class="block text-sm font-medium leading-6 text-gray-900 capitalize">{{form.image.label}}</label>
+            <div class="mt-2">
+                {{form.image}}
+            </div>
+        </div>
+
+        <div class="col-span-1 col-end-7 place-self-end flex items-center justify-end gap-x-6">
+            <button type="submit" class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Add Photo</button>
+        </div>
+    </div>
+</form>
+{% endblock section_content %}

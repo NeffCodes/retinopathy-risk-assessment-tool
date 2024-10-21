@@ -10,11 +10,10 @@
 
 {% block content %}
   {% include "./partials/patient_page.html" with patient_info=patient %}
-  
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload Photo</button>
-  </form>
+
+  <hr
+  class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
+
+  {% include "./partials/add_new_retina_photo.html" %}
 {% endblock content %}
 
