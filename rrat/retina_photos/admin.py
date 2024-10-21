@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import RetinaPhoto as RetinaPhotoModel
 import datetime
 import cloudinary.uploader
-from cloudinary import CloudinaryImage
+
 class RetinaPhotoAdmin(admin.ModelAdmin):
-    readonly_fields = ("cloudinary_public_id", 'image_tag')
+    readonly_fields = ["cloudinary_public_id", 'image_tag']
 
     # What shows up on the admin panel list
     list_display = ("patient_name", "position", "cloudinary_public_id", "date_created")
@@ -54,5 +54,11 @@ class RetinaPhotoAdmin(admin.ModelAdmin):
         # Save the object again with the updated image URL
         super().save_model(request, obj, form, change)
     
+    # Set fields to read only after they have been added
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # This means the object already exists (it's being edited)
+            return self.readonly_fields + ['image', 'position']  
+        return self.readonly_fields  # When adding a new object, don't make the image field read-only
+
 # Register your models here.
 admin.site.register(RetinaPhotoModel, RetinaPhotoAdmin)
