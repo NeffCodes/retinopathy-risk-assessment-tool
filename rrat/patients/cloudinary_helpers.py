@@ -26,7 +26,7 @@ def destroy_cloudinary_image(public_id):
     print(f"= Cloudinary Destroy Response: {public_id} {cloud}")
     return cloud
 
-def upload_cloudinary_avatar(image_file, public_id, folder=None):
+def upload_cloudinary_avatar(image_file, public_id, folder= 'rrat/avatars'):
     try:
         cloud = cloudinary.uploader.upload(
             image_file,
@@ -53,7 +53,7 @@ def set_retina_cloudinary_public_id(image_instance):
     image_instance.cloudinary_public_id = custom_public_id
     return image_instance.cloudinary_public_id
 
-def upload_cloudinary_retina(image_file, image_instance, folder=None):
+def upload_cloudinary_retina(image_file, image_instance, folder= 'rrat/retina_photos'):
     public_id = set_retina_cloudinary_public_id(image_instance)
 
     try:

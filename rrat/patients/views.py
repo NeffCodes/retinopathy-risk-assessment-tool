@@ -27,7 +27,7 @@ def patients_list(request):
       set_cloudinary_public_id(patient_instance)
 
       # Upload the image to Cloudinary with transformations
-      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id, 'rrat/avatars')
+      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
 
       # Set the image URL to the patient instance
       patient_instance.avatar = result['url']
@@ -68,7 +68,7 @@ def view_patient(request, id):
       image_file = request.FILES['image']
 
       # Upload image to Cloudinary with transformations
-      result = upload_cloudinary_retina(image_file, image_instance, 'rrat/retina_photos')
+      result = upload_cloudinary_retina(image_file, image_instance)
 
       # Set the image URL to the patient instance
       image_instance.image = result['url']
@@ -121,7 +121,7 @@ def update_patient(request, id):
         set_cloudinary_public_id(patient_instance)
 
         # Upload the new image to Cloudinary
-        result = upload_cloudinary_avatar(image_file,patient_instance.cloudinary_public_id,'rrat/avatars')
+        result = upload_cloudinary_avatar(image_file,patient_instance.cloudinary_public_id)
 
         # Set the image URL to the patient instance
         patient_instance.avatar = result['url']
