@@ -10,5 +10,11 @@
 
 {% block content %}
   {% include "./partials/patient_page.html" with patient_info=patient %}
+  
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload Photo</button>
+  </form>
 {% endblock content %}
 
