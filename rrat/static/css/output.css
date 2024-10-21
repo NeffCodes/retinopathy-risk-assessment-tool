@@ -686,6 +686,42 @@ video {
   height: 100vh;
 }
 
+.h-7 {
+  height: 1.75rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.h-1\/2 {
+  height: 50%;
+}
+
+.h-dvh {
+  height: 100dvh;
+}
+
+.h-4\/5 {
+  height: 80%;
+}
+
+.h-2\/3 {
+  height: 66.666667%;
+}
+
+.h-1\/3 {
+  height: 33.333333%;
+}
+
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-3\/5 {
+  height: 60%;
+}
+
 .w-full {
   width: 100%;
 }
