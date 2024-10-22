@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .cloudinary_helpers import *
 from .models import Patient as PatientModel
 from .forms import PatientForm
-from retina_photos.forms import RetinaForm
 from .decorators import check_patient_hidden
+from retina_photos.views import form_add_new_retina_photo
 
 def patients_list(request):
   """
@@ -53,33 +53,10 @@ def view_patient(request, id):
   Patient page to view patient details.
   """
   patient = PatientModel.objects.get(id=id)
-  retinaForm = RetinaForm(request.POST or None, request.FILES or None)
-
-  # check if form data is valid
-  if retinaForm.is_valid():
-    # get data from form instance
-    image_instance = retinaForm.save(commit=False) # Don't save the form yet
-
-    # Set the patient id
-    image_instance.patient = patient
-
-    # If instance has an image
-    if request.FILES.get('image'):
-      image_file = request.FILES['image']
-
-      # Upload image to Cloudinary with transformations
-      result = upload_cloudinary_retina(image_file, image_instance)
-
-      # Set the image URL to the patient instance
-      image_instance.image = result['url']
-
-    image_instance.save()
-    return redirect("patients:patient_view", id)
-  else:
-    print(retinaForm.errors)
+  form = form_add_new_retina_photo(request=request, patient=patient)
 
   context = {}
-  context["form"] = retinaForm
+  context["form"] = form
   context["patient"] = patient
   return render(request, 'patients/view_patient.html', context)
 
