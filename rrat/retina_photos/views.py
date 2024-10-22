@@ -1,11 +1,10 @@
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina
 
-# Create your views here.
 def form_add_new_retina_photo(request, patient):
     """
-    Logic to add new retina photo to db
-    Returns form context
+    Logic to add new retina photo to cloudinary db
+    Returns retina form context
     """
     retinaForm = RetinaForm(request.POST or None, request.FILES or None)
 

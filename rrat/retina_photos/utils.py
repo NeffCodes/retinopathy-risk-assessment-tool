@@ -15,6 +15,9 @@ def set_retina_cloudinary_public_id(image_instance):
     return image_instance.cloudinary_public_id
 
 def upload_cloudinary_retina(image_file, image_instance, folder= 'rrat/retina_photos'):
+    """
+    This function will transform and upload a retina photo to cloudinary
+    """
     public_id = set_retina_cloudinary_public_id(image_instance)
 
     try:

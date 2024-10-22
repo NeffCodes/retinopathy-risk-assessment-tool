@@ -13,7 +13,5 @@ class RetinaForm(forms.ModelForm):
 
         widgets = {
             "position": forms.Select(attrs={"class":form_custom_class}),
-            "image": forms.ClearableFileInput(attrs={
-				'class': form_custom_class,
-			}),
+            "image": forms.ClearableFileInput(attrs={'class': form_custom_class}),
         }

@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .cloudinary_helpers import *
 from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
+from .cloudinary_helpers import *
 from retina_photos.views import form_add_new_retina_photo
 
 def patients_list(request):
