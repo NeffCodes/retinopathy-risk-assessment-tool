@@ -3,7 +3,7 @@ from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
 from .cloudinary_helpers import *
-from retina_photos.views import form_add_new_retina_photo
+from retina_photos.views import upload_retina_photo
 
 def patients_list(request):
   """
@@ -53,7 +53,7 @@ def view_patient(request, id):
   Patient page to view patient details.
   """
   patient = PatientModel.objects.get(id=id)
-  form = form_add_new_retina_photo(request=request, patient=patient)
+  form = upload_retina_photo(request=request, patient=patient)
 
   context = {}
   context["form"] = form

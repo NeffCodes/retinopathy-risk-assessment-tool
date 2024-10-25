@@ -5,7 +5,7 @@ from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db
 from .choices import StatusChoices
 
 
-def form_add_new_retina_photo(request, patient):
+def upload_retina_photo(request, patient):
     """
     Logic to add new retina photo to cloudinary db
     Returns retina form context
