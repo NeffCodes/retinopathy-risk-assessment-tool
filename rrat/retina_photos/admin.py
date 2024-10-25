@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import RetinaPhoto as RetinaPhotoModel
 import datetime
 import cloudinary.uploader
+from .utils import hard_delete_image_from_all_db
 
 class RetinaPhotoAdmin(admin.ModelAdmin):
     readonly_fields = ["cloudinary_public_id", 'image_tag']
@@ -70,11 +71,9 @@ class RetinaPhotoAdmin(admin.ModelAdmin):
 
         if obj.image:
             try:
-                # get public id
-                cloudinary_public_id = obj.cloudinary_public_id
-                
+                hard_delete_image_from_all_db(obj)
             except Exception as e:
-                print(f"Error trying to delete image in Cloudinary: {e}")
+                print(f"Error trying to delete image from admin panel: {e}")
 
 
 
