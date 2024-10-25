@@ -60,5 +60,23 @@ class RetinaPhotoAdmin(admin.ModelAdmin):
             return self.readonly_fields + ['image', 'position']  
         return self.readonly_fields  # When adding a new object, don't make the image field read-only
 
+    def delete_model(self, request, obj):
+        """
+        Custom admin delete method that allows us to also delete the retina image from Cloudinary Database from the admin panel. 
+        NOTE: this does not allow deleting from the queryset, will need a different function if we want that capablility.
+        Source: https://stackoverflow.com/a/56165570
+        """ 
+        print(f"===== Deleting Patient: {obj}")
+
+        if obj.image:
+            try:
+                # get public id
+                cloudinary_public_id = obj.cloudinary_public_id
+                
+            except Exception as e:
+                print(f"Error trying to delete image in Cloudinary: {e}")
+
+
+
 # Register your models here.
 admin.site.register(RetinaPhotoModel, RetinaPhotoAdmin)
