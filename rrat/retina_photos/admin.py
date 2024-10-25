@@ -67,7 +67,7 @@ class RetinaPhotoAdmin(admin.ModelAdmin):
         NOTE: this does not allow deleting from the queryset, will need a different function if we want that capablility.
         Source: https://stackoverflow.com/a/56165570
         """ 
-        print(f"===== Deleting Patient: {obj}")
+        print(f"===== Deleting Retina Photo: {obj}")
 
         if obj.image:
             try:
