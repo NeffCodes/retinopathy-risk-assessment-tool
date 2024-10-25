@@ -1,8 +1,8 @@
 from django.db import models
 
 class PositionChoices(models.TextChoices):
-    LEFT = "left", "Left"
-    RIGHT = "right", "Right"
+    LEFT = "os", "OS"
+    RIGHT = "od", "OD"
 
 class StatusChoices(models.TextChoices):
     UNPROCESSED = 'unprocessed', 'Unprocessed'
