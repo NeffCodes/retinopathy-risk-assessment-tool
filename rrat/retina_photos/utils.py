@@ -1,6 +1,5 @@
 from django.utils.timezone import now
 import cloudinary.uploader
-from patients.cloudinary_helpers import destroy_cloudinary_image
 
 
 def set_retina_cloudinary_public_id(image_instance):
