@@ -4,7 +4,6 @@ from .forms import RetinaForm
 from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db
 from .choices import StatusChoices
 
-from patients.models import Patient
 
 def form_add_new_retina_photo(request, patient):
     """
@@ -44,20 +43,21 @@ def delete_retina_photo(request, id):
     retina_image = get_object_or_404(RetinaPhotoModel, id=id)
 
     # get patient ID
-    patient_id = retina_image.patient
+    patient_id = retina_image.patient.id
 
-    print(f"\n\n {patient_id} \n\n {isinstance(patient_id, Patient)}")
-
-    if retina_image.status == StatusChoices.UNPROCESSED: 
+    # if confirm deletion
+    if request.method == "POST":
         # if image has not been sent to the wizard, hard delete
-        hard_delete_image_from_all_db(retina_image)
-    else:
-        # if processed or pending, mark as soft delete
-        if request.method == "POST":
-            # mark as hidden and return to list
+        if retina_image.status == StatusChoices.UNPROCESSED: 
+            hard_delete_image_from_all_db(retina_image)
+        else:
+        # if processed or pending, mark as hidden for soft delete
             retina_image.hidden = True
             retina_image.save(update_fields=["hidden"])
-            return redirect("patients:patient_view", patient_id.id)
+        return redirect("patients:patient_view", id=patient_id)
     
+    # render the confirmation page
     context = {}
-    return render(request, 'url path to delete', context)
+    context["patient_id"] = patient_id
+    context["photo"] = retina_image
+    return render(request, 'retina_photos/photo_confirm_delete.html', context)
