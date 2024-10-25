@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db.models.query import QuerySet
+from django.http import HttpRequest
 from .models import RetinaPhoto as RetinaPhotoModel
 import datetime
 import cloudinary.uploader
@@ -64,17 +66,31 @@ class RetinaPhotoAdmin(admin.ModelAdmin):
     def delete_model(self, request, obj):
         """
         Custom admin delete method that allows us to also delete the retina image from Cloudinary Database from the admin panel. 
-        NOTE: this does not allow deleting from the queryset, will need a different function if we want that capablility.
-        Source: https://stackoverflow.com/a/56165570
         """ 
         print(f"===== Deleting Retina Photo: {obj}")
 
         if obj.image:
             try:
                 hard_delete_image_from_all_db(obj)
+                
             except Exception as e:
                 print(f"Error trying to delete image from admin panel: {e}")
 
+    def delete_queryset(self, request, queryset):
+        """
+        Custom admin delete method that allows us to also delete the selected retina image(s) from Cloudinary Database from the admin panel overview page. 
+        """ 
+        print("+===========================")
+        print(queryset)
+
+        for img_obj in queryset:
+            try:
+                hard_delete_image_from_all_db(img_obj)
+            except Exception as e:
+                print(f"Error trying to delete image from admin panel: {e}")
+        queryset.delete()
+        print("Queryset Deleted")
+        return super().delete_queryset(request, queryset)
 
 
 # Register your models here.
