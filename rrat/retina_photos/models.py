@@ -25,6 +25,7 @@ class RetinaPhoto(models.Model):
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    hidden = models.BooleanField(default=False)
     position = models.CharField(
         max_length=5, 
         choices=PositionChoices.choices

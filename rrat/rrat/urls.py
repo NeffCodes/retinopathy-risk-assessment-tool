@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.homepage),
     path('about/', views.about),
     path('patients/', include('patients.urls')),
+    path('retina_photos/', include('retina_photos.urls')),
     path('users/', include('users.urls')),
 ]
