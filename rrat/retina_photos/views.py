@@ -1,7 +1,7 @@
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina
 
-def form_add_new_retina_photo(request, patient):
+def upload_retina_photo(request, patient):
     """
     Logic to add new retina photo to cloudinary db
     Returns retina form context
