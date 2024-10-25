@@ -30,3 +30,9 @@ def form_add_new_retina_photo(request, patient):
         else:
             print(retinaForm.errors)
     return retinaForm
+
+def delete_retina_photo(request, id):
+    """
+    Hard deletes the image from both the database and from cloudinary.
+    """
+    pass
