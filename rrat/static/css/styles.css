@@ -1,0 +1,31 @@
+/* test classes */
+.test1 {
+  outline: 1px solid red
+}
+.test2 {
+  outline: 1px solid blue;
+}
+.test3 {
+  outline: 1px solid green;
+}
+
+/* to show the input form boxes for now */
+.form-with-validation input:not([type=checkbox]):not([type=radio]) {
+  border: 1px solid #037485 ;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  margin: 0.25rem 0;
+}
+.form-with-validation button {
+  border: 1px solid #038515;
+  border-radius: 1rem;
+  color: #038515;
+  font-weight: bold;
+  padding: 0.5rem 0.375rem; 
+  margin-top: 1rem;
+}
+
+.form-with-validation button:hover {
+  background-color: #037485 ;
+  color: #fff;
+}

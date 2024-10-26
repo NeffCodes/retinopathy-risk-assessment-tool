@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Register
+{% endblock title %}
+
+{% block header %}
+  Register a New User
+{% endblock header %}
+
+{% block content %}
+  <section class="px-4 py-6 sm:px-6 lg:px-8 bg-white rounded-md shadow-lg container">
+    <form class="form-with-validation" action="/users/register/" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button class='form-submit'>Submit</button>
+    </form>
+  </section>
+{% endblock content %}

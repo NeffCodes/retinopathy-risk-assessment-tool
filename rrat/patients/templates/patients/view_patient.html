@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  {{ patient.full_name }}
+{% endblock title %}
+
+{% block header %}
+  {{ patient.full_name }}
+{% endblock header %}
+
+{% block content %}
+  {% include "./partials/patient_page.html" with patient_info=patient %}
+{% endblock content %}
+

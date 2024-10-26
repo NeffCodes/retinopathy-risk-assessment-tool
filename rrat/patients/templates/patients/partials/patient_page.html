@@ -1,0 +1,61 @@
+{% extends "partials/section.html" %}
+
+{% block section_content %}
+<div class="text-slate-800">
+    <div class="flex items-center justify-end gap-x-2">
+        <a href="{% url 'patients:list' %}" class="rounded-md px-3 py-2 text-xs font-semibold text-teal-600 hover:bg-teal-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 -ml-3 focus-visible:outline-blue-600 flex gap-2 items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path fill-rule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+            </svg>
+            <span>Back to List</span>
+        </a>
+
+        <a href="{% url 'patients:patient_update' id=patient_info.id %}" class="rounded-md border border-blue-600 px-3 py-2 text-xs font-semibold text-blue-600 shadow-sm hover:bg-blue-500  hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ml-auto">Update</a>
+
+        <a href="{% url 'patients:patient_delete' id=patient_info.id %}" class="rounded-md  px-3 py-2 text-xs font-semibold leading-6 text-gray-900 hover:text-white hover:bg-red-700">Delete</a>
+    </div>
+    
+    <hr class="mb-6 mt-2 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
+    
+    {% if patient_info.avatar %}
+    <img class="rounded"
+        src="{{patient_info.avatar.url}}" 
+        alt="{{patient_info.first_name}} {{patient_info.last_name}}'s avatar"
+        />
+    {% endif %}
+
+    <h2 class="text-lg font-semibold text-teal-600">{{patient_info.first_name}} {{patient_info.last_name}}'s Information</h2>
+
+
+    <div>
+        <p>
+            <span class="font-semibold">
+                ID: 
+            </span>
+            {{ patient_info.id }}
+        </p>
+        <p>
+            <span class="font-semibold">
+                Age: 
+            </span>
+            {{ patient_info.age }}
+        </p>
+        <p>
+            <span class="font-semibold">
+                Date of birth: 
+            </span>
+            {{ patient_info.date_of_birth }}</p>
+        <p>
+            <span class="font-semibold">
+                Date Created: 
+            </span>
+                {{ patient_info.date_created }}</p>
+        <p>
+            <span class="font-semibold">
+                Date Updated: 
+            </span>
+                {{ patient_info.date_updated }}
+        </p>
+    </div>
+<div>
+{% endblock section_content%}

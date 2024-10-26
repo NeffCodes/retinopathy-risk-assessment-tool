@@ -8,7 +8,10 @@ media
 
 # Django Migrations #
 */migrations/*
+**/migrations/**
+!**/migrations
 !*/migrations/__init__.py
+!**/migrations/__init__.py
 
 # Backup files # 
 *.bak 
@@ -52,3 +55,7 @@ venv.bak/
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# Node Modules #
+node_modules
+node_modules/*
