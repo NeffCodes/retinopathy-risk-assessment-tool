@@ -3,6 +3,7 @@ module.exports = {
   mode: 'jit',
   // Defining the paths where Tailwind should look for class names
   content: [
+<<<<<<< HEAD
     "./patients/templates/**/*.{html,js}",   // Templates in the 'patients' app
     "./patients/templates/partials/**/*.{html,js}",  // Partials in the 'patients' app
     "./templates/**/*.html",    // Generic templates
@@ -10,6 +11,17 @@ module.exports = {
     "./static/**/*.svg",        // SVG files
     "./**/forms.py"             // If we use Django forms with Tailwind classes
   ],
+=======
+    "./patients/templates/**/*.{html,js}",
+    "./patients/templates/partials/**/*.{html,js}",
+    "./retina_photos/templates/**/*.{html,js}",
+    "./retina_photos/templates/partials/**/*.{html,js}",
+    "./templates/**/*.html",
+    "./static/**/*.js",
+    "./static/**/*.svg",
+    "./**/forms.py"
+    ],
+>>>>>>> main
   theme: {
     // Extend allows you to add custom values while retaining the default ones
     extend: {

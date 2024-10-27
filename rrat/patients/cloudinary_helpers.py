@@ -26,7 +26,7 @@ def destroy_cloudinary_image(public_id):
     print(f"= Cloudinary Destroy Response: {public_id} {cloud}")
     return cloud
 
-def upload_cloudinary_avatar(image_file, public_id, folder=None):
+def upload_cloudinary_avatar(image_file, public_id, folder= 'rrat/avatars'):
     try:
         cloud = cloudinary.uploader.upload(
             image_file,
