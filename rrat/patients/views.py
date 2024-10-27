@@ -13,13 +13,13 @@ def patients_list(request):
     """
     context = {}
 
-    # create an object of the patient form to create a new patient
+    # Create an object of the patient form to create a new patient
     form = PatientForm(request.POST or None, request.FILES or None)
 
-    # check if form data is valid
+    # Check if form data is valid
     if form.is_valid():
-        # get data from form instance
-        patient_instance = form.save(commit=False)  # don't save the form yet
+        # Get data from form instance
+        patient_instance = form.save(commit=False)  # Don't save the form yet
 
         # If instance has an image
         if request.FILES.get('avatar'):
@@ -28,8 +28,8 @@ def patients_list(request):
             # Set the new public ID 
             set_cloudinary_public_id(patient_instance)
 
-      # Upload the image to Cloudinary with transformations
-      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
+            # Upload the image to Cloudinary with transformations
+            result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
 
             # Set the image URL to the patient instance
             patient_instance.avatar = result['url']
@@ -40,14 +40,15 @@ def patients_list(request):
     else:
         print(form.errors)
 
-    # get all patients in db that are not hidden
+    # Get all patients in db that are not hidden
     patients = PatientModel.objects.all().exclude(hidden=True).order_by('last_name')
 
-    # set context
+    # Set context
     context['form'] = form
     context['patients'] = patients
 
     return render(request, 'patients/patients_list.html', context)
+
 
 @login_required(login_url='login')  # Protect the view_patient view
 @check_patient_hidden
