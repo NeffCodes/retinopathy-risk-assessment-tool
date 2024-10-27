@@ -19,19 +19,6 @@
             EyeQ: Your Partner in Ocular Health
         </p>
         
-
-        <!--Welcome Messages-->
-        {% if messages %}
-            <div class="mb-4">
-                {% for message in messages %}
-                    <div class="bg-teal-100 border-t border-b border-teal-500 text-teal-700 px-4 py-3" role="alert">
-                        <p class="text-sm">{{ message }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
-        <!--Error Messages-->
         {% if error_message %}
             <p class="text-red-500 text-sm mb-4">{{ error_message }}</p>
         {% endif %}
