@@ -1,7 +1,6 @@
 from django.utils.timezone import now
 import cloudinary.uploader
 
-
 def set_retina_cloudinary_public_id(image_instance):
     """
     This function will set the cloudinary public id for a retina image instance. 

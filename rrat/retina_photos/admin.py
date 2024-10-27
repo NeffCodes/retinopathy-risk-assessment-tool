@@ -4,6 +4,7 @@ import datetime
 import cloudinary.uploader
 from .utils import hard_delete_image_from_all_db
 
+
 class RetinaPhotoAdmin(admin.ModelAdmin):
     readonly_fields = ["cloudinary_public_id", 'image_tag']
 
