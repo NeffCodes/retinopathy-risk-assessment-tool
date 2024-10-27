@@ -22,7 +22,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name='home'),  # Homepage
     path('about/', views.about, name='about'),  # About Page
+<<<<<<< HEAD
     path('patients/', include(('patients.urls', 'patients'), namespace='patients')),
     path('retina_photos/', include(('retina_photos.urls', 'retina_photos'), namespace='retina_photos')),
+=======
+    path('patients/', include('patients.urls')),
+>>>>>>> 7621f2c (Updated auth features, modified CSS, About page redesign, and adjusted Tailwind configuration)
     path('users/', include('users.urls')),
 ]

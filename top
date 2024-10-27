@@ -1,0 +1,393 @@
+[33mcommit 6417fb2b6d39f0f93d8a10f32ec7149441664224[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mAuth[m[33m)[m
+Author: SNMeans <suminmeans@gmail.com>
+Date:   Sat Oct 26 17:54:20 2024 -0400
+
+    Update About page for Diabetic Retinopathy with detailed information on the condition, its management, and prognosis
+
+[33mcommit 23675d061ef2c4c668b786eeee0ade2b97d4b5cc[m[33m ([m[1;31morigin/Auth[m[33m)[m
+Merge: 4668852 e8dea9a
+Author: SNMeans <suminmeans@gmail.com>
+Date:   Sat Oct 26 16:50:12 2024 -0400
+
+    Merged main into Auth branch
+
+[33mcommit e8dea9a78ad361f7f700b940ef02fa301a2ee3b9[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Fri Oct 25 11:15:52 2024 -0400
+
+    change left-right to os-od (#31)
+
+[33mcommit c8276d0ea10dd0b4c92fdf7316a6e423b1f17c27[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Sun Oct 20 12:44:19 2024 -0400
+
+    Resolves #19 - Setup Retina Photo Model (#28)
+    
+    * Create new Retina Photos app
+    
+    * setup basic model
+    
+    * connect retina photo app to rrat
+    
+    * register new app
+    
+    * update retina photo admin to be tuple
+    
+    * setup basic for template tags
+    
+    * WIP - updating photo model
+    
+    * need to potentially break choices into enum
+    * need to finish adding cloudinary public id
+    * need to add result field with choices
+    
+    * break choices out as text choice enums
+    
+    * add cloudinary public id
+    
+    * manually set patient_id column name and table name
+    
+    * update admin panel to display model
+    
+    * add image tag to model to display on admin panel
+
+[33mcommit c73fcd089615d9b808eb070d0ea5504c836b06d8[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Sun Oct 20 12:23:02 2024 -0400
+
+    Resolves #18 - Setup New Retina Photos App (#27)
+    
+    * Create new Retina Photos app
+    
+    * setup basic model
+    
+    * connect retina photo app to rrat
+    
+    * register new app
+    
+    * update retina photo admin to be tuple
+    
+    * setup basic for template tags
+
+[33mcommit 8d6ef846e624cc3f61dc4584db8869eb1df8fc9f[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Mon Oct 14 12:39:57 2024 -0400
+
+    Add profile pictures with Cloudinary (#23)
+    
+    * install cloudinary and update requirements
+    
+    * update settings to implement cloudinary
+    
+    * update patient model to include profile picture and public id
+    
+    * update forms to include avatar
+    
+    * add ability to upload new profile pics
+    
+    * fix decorator to properly throw 404 if patient does not exist
+    
+    * add ability to delete image from cloudinary when hard deleteing patient
+    
+    * fix tailwind styling
+    
+    * fix public id to properly handle date at end of string
+    
+    * fix delete to also remove patients if they do not have an avatar
+    
+    * fix the public id to not update to current time
+    
+    * break creating public id to separate helper
+    
+    * create ability to update profile pictures
+    
+    * remove redundant app from settings
+
+[33mcommit 91c3e7b4b7be832f0738d868cc75fcd9f4c3027a[m
+Author: SNMeans <suminmeans@gmail.com>
+Date:   Fri Sep 27 11:19:47 2024 -0400
+
+    Add package.json and package-lock.json
+
+[33mcommit 0b4d0e8c166a4ee037d54cc49b4ceffc9f3c0e76[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Fri Sep 20 15:28:21 2024 -0400
+
+    Add patient styling (#16)
+    
+    * update patient model
+    
+    * update gitignore for migrations
+    
+    * update self describe for patients model
+    
+    * setup basic display of patients to dashboard
+    
+    * setup patient to pull based on uuid
+    
+    * create add new patient form to dashboard
+    
+    * add comments to view functions for clarity
+    
+    * add UPDATE for patients
+    
+    * update timezone to est
+    
+    * add DELETE for patients
+    
+    * add new hidden field to patient model
+    
+    * refactor patient delete method to soft delete
+    
+    * update GET to only show patients not hidden and create a check patient decorator
+    
+    * cleanup
+    
+    * fix tailwind build
+    
+    * setup patient list organization
+    
+    * add styling for patient card
+    
+    * finish styling patient list
+    
+    * update patient page style
+    
+    * finish styling
+
+[33mcommit 78f136acec0b86ff3993350b571a69b3048a5342[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Fri Sep 20 14:29:54 2024 -0400
+
+    Setup CRUD for Patients (#15)
+    
+    * update patient model
+    
+    * update gitignore for migrations
+    
+    * update self describe for patients model
+    
+    * setup basic display of patients to dashboard
+    
+    * setup patient to pull based on uuid
+    
+    * create add new patient form to dashboard
+    
+    * add comments to view functions for clarity
+    
+    * add UPDATE for patients
+    
+    * update timezone to est
+    
+    * add DELETE for patients
+    
+    * add new hidden field to patient model
+    
+    * refactor patient delete method to soft delete
+    
+    * update GET to only show patients not hidden and create a check patient decorator
+    
+    * cleanup
+
+[33mcommit 930a999c0cfe770b2d4a7acab0de15eed6ada9aa[m
+Author: James Neff <james.m.neff@gmail.com>
+Date:   Fri Aug 23 15:23:30 2024 -0400
+
+    add tailwind css docs and run command
+
+[33mcommit 9205c88dc893313cb5570505aa4767b4e659a92c[m
+Author: SNMeans <suminmeans@gmail.com>
+Date:   Thu Aug 22 18:12:41 2024 -0400
+
+    Add requirements.txt
+
+[33mcommit 1201226c36cee4212d4477aa587419cb723adee6[m
+Author: James Neff <james.m.neff@gmail.com>
+Date:   Thu Aug 22 17:55:47 2024 -0400
+
+    update gitignore
+
+[33mcommit 8949843f41d6340bc0a6317de9672330f70f96bf[m
+Author: James Neff <james.m.neff@gmail.com>
+Date:   Thu Aug 22 17:55:05 2024 -0400
+
+    remove empty directory
+
+[33mcommit 9b74734d37e9f33ebefd14d65f40e2dfbdc39f3b[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Thu Aug 22 17:53:06 2024 -0400
+
+    #4 - Add Tailwind and update styling (#9)
+    
+    * initialize tailwind via npm
+    
+    * configure and build tailwind css file
+    
+    * link output to layout
+    
+    * update about page
+    
+    * update patient list
+    
+    * update layout css
+    
+    * update home styles
+    
+    * quick edit register page
+    
+    * updated tailwind styles and output
+
+[33mcommit 7d0f7874a88aa758bcdbeb981fcd92cf6aaf42fa[m
+Author: Sumi Nia Means <suminmeans@gmail.com>
+Date:   Thu Aug 22 15:14:15 2024 -0400
+
+    Updated README with detailed machine learning model overview, added Python libraries, and expanded descriptions of features and supervised learning type.
+
+[33mcommit 3a66160696a6689fb8998d203fb779d40b03138b[m
+Merge: c538fff 933a75e
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Thu Aug 22 14:56:07 2024 -0400
+
+    Merge pull request #8 from NeffCodes/7-update-readme
+    
+    #7 - Update README
+
+[33mcommit 933a75ef8b8c94e668976e0effcdb39d19a82b66[m
+Author: James Neff <james.m.neff@gmail.com>
+Date:   Wed Aug 21 18:11:41 2024 -0400
+
+    fix frontend tech info
+
+[33mcommit eff7671030485143e2fed2e9ff5190b78243304f[m
+Author: James Neff <james.m.neff@gmail.com>
+Date:   Wed Aug 21 18:07:43 2024 -0400
+
+    Update information on README.md
+
+[33mcommit 46688523a06a2b537bef44d77773df60c50b205f[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Wed Aug 21 14:44:49 2024 -0400
+
+    Update README.md
+
+[33mcommit 94df7cde24bc948ec606d736a1a1437c07b3e22f[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Wed Aug 21 14:38:14 2024 -0400
+
+    Update README.md
+
+[33mcommit 19866cb07f73931d2f2c5ea2253670adccc8da98[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Wed Aug 21 14:36:43 2024 -0400
+
+    Update README.md
+
+[33mcommit c538fff7aa7ef96b30d9b274f7491114b46944f7[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Mon Aug 19 15:53:30 2024 -0400
+
+    1-Basic Setup of Django (#3)
+    
+    * setup base django
+    
+    * setup templates
+    
+    * setup base static
+    
+    * setup js static
+    
+    * setup patients app
+    
+    * create users app
+
+[33mcommit a972459542b151bd52bcc708ff1eb26ee5b733ac[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 19:59:22 2024 -0400
+
+    Update .gitignore
+    
+    Update .gitignore to include Django migrations, MyPy cache, PyCharm, and JetBrains project files.
+
+[33mcommit 0ad856dc702a99039ae8c3c3920ed94c9ce8185e[m
+Author: James Neff <james.m.neff@gmail.com>
+Date:   Mon Aug 12 17:14:46 2024 -0400
+
+    setup basic gitignore
+
+[33mcommit b3a421a8a7b735cf9c08a995c515a5f455ee04c0[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Mon Aug 12 15:33:43 2024 -0400
+
+    Update README.md
+
+[33mcommit 4a61b4ce194edadc3c09b8da69bae1c09c5ba306[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 15:30:30 2024 -0400
+
+    Update LICENSE
+
+[33mcommit ad1e7a26396a7fe516a0cdf17dce3a05130aadde[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 15:30:04 2024 -0400
+
+    Update README.md
+
+[33mcommit 06fc93900e20dbe8f03ca97586d62f2aa0850926[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 15:26:48 2024 -0400
+
+    Update README.md
+
+[33mcommit 0f3a39f1087e7714fb2911a27904c1a52d393f27[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 15:22:13 2024 -0400
+
+    Update README.md
+
+[33mcommit c2b8a6cb01659158420d24ccaffd04195579f0a1[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 15:10:12 2024 -0400
+
+    Update README.md
+
+[33mcommit 43a54d13bc752a4573e130ad8a6976590aaff21e[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 15:04:14 2024 -0400
+
+    Update README.md
+
+[33mcommit e5906699bd0e03f869eba8af48f19092598cd142[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 14:54:55 2024 -0400
+
+    Update README.md
+
+[33mcommit e1808489b221c17225fb698bee08a08c2482d8e1[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 14:48:20 2024 -0400
+
+    Update README.md
+
+[33mcommit c37ecf78491ed97d193f5696536e5faec0476487[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 13:07:42 2024 -0400
+
+    Update README.md
+
+[33mcommit 6008ea6ba3e81286020becbf6b83feba6fc4d224[m
+Author: Sumi Nia <137466513+SNMeans@users.noreply.github.com>
+Date:   Mon Aug 12 13:07:33 2024 -0400
+
+    Update README.md
+
+[33mcommit ede89687407aa53b3b72ca9fddf0575cab7132eb[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Mon Aug 12 13:07:20 2024 -0400
+
+    Update README.md
+
+[33mcommit 664dbe75f0911107f6401460f6b914df468c710f[m
+Author: James Neff <72764232+NeffCodes@users.noreply.github.com>
+Date:   Mon Aug 12 13:05:33 2024 -0400
+
+    Initial commit
