@@ -57,17 +57,16 @@ def view_patient(request, id):
     Patient page to view patient details.
     """
     patient = get_object_or_404(PatientModel, id=id)
-    return render(request, 'patients/view_patient.html', {'patient': patient})
-  """
-  Patient page to view patient details.
-  """
-  patient = PatientModel.objects.get(id=id)
-  form = upload_retina_photo(request=request, patient=patient)
+    
+    # If you need to upload a retina photo
+    form = upload_retina_photo(request=request, patient=patient)
 
-  context = {}
-  context["form"] = form
-  context["patient"] = patient
-  return render(request, 'patients/view_patient.html', context)
+    context = {
+        "form": form,
+        "patient": patient
+    }
+    
+    return render(request, 'patients/view_patient.html', context)
 
 @login_required(login_url='login')  # Protect the update_patient view
 @check_patient_hidden
@@ -106,13 +105,8 @@ def update_patient(request, id):
                 # Set a new public ID 
                 set_cloudinary_public_id(patient_instance)
 
-<<<<<<< HEAD
-                # Upload the new image to Cloudinary
-                result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id, 'rrat/avatars')
-=======
         # Upload the new image to Cloudinary
         result = upload_cloudinary_avatar(image_file,patient_instance.cloudinary_public_id)
->>>>>>> main
 
                 # Set the image URL to the patient instance
                 patient_instance.avatar = result['url']
