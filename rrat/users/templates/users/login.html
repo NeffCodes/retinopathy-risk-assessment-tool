@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
     <h2>Login</h2>
-    <form method="POST">
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}  <!-- Renders the form fields -->
+        {{ form.as_p }}  <!-- Render form fields automatically -->
         <button type="submit">Login</button>
     </form>
-    <p><a href="{% url 'users:register' %}">Register</a></p> <!-- Link to registration -->
 </body>
 </html>
-

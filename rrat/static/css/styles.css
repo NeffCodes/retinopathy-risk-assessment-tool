@@ -36,6 +36,22 @@
 
 .hero-section {
   background-color: #037485; /* Set background color */
-  color: white; /* Optional: Change text color for better contrast */
+  color: white; /* Change text color for better contrast */
   margin-top: 0; /* Remove any top margin */
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  height: 60vh; /* Set height to full viewport height */
+  text-align: center; /* Center text within the section */
 }
+
+footer {
+  background-color: #1e3a8a; /* Adjust footer background color */
+  color: white; /* Set footer text color */
+  padding: 1rem 0; /* Add padding for top and bottom */
+  display: flex; /* Enable flexbox for footer */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  text-align: center; /* Center text within the footer */
+}
+

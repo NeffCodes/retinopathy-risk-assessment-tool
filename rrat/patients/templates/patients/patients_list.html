@@ -1,22 +1,38 @@
 {% extends "layout.html" %}
 
 {% block title %}
-  Dashboard
+  Patient Dashboard
 {% endblock title %}
 
 {% block header %}
-  Patient List
+  <h1 class="text-2xl font-bold">Patient List</h1>
 {% endblock header %}
 
 {% block content %}
-  {% include "./partials/add_new_patient.html" %}
-  
-  <hr
-  class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
+  <!-- Feedback Messages -->
+  {% if messages %}
+    <div class="mb-4">
+      {% for message in messages %}
+        <div class="bg-teal-500 text-white p-2 rounded">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
+  <!-- Include the form to add a new patient -->
+  {% include "./partials/add_new_patient.html" %}
+
+  <hr class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
+
+  <!-- Patient Cards Section -->
   <section class="grid grid-cols-4 gap-4">
-  {% for patient in patients %}
-    {% include "./partials/patient_card.html" with patient_info=patient %}
-  {% endfor %}
+    {% if patients %}
+      {% for patient in patients %}
+        {% include "./partials/patient_card.html" with patient_info=patient %}
+      {% endfor %}
+    {% else %}
+      <p class="col-span-4 text-center text-gray-500">No patients found. Please add a new patient.</p>
+    {% endif %}
   </section>
 {% endblock content %}

@@ -18,17 +18,25 @@ def register_view(request):
 
 # Login view
 def login_view(request):
+    error_message = None  # Initialize error message variable
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # Log the user in
-                return redirect("/")  # Redirect to home or desired page after login
+                return redirect("patients:patients_list")  # Redirect to the patient dashboard or other page
+            else:
+                error_message = "Invalid login credentials"  # Handle invalid credentials
+        else:
+            error_message = "Invalid login credentials"  # Handle invalid form submission
     else:
         form = AuthenticationForm()
 
-    args = {"form": form}
+    args = {
+        "form": form,
+        "error_message": error_message
+    }
     return render(request, "users/login.html", args)
