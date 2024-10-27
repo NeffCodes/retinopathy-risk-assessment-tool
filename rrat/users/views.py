@@ -28,8 +28,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # Log the user in
-                messages.success(request, f'Welcome back, {username}!')  # Add success message
-                return redirect("patients:list")  # Redirect to the patient dashboard or other page
+                return redirect("patients:patients_list")  # Redirect to the patient dashboard or other page
             else:
                 error_message = "Invalid login credentials"  # Handle invalid credentials
         else:
