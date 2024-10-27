@@ -28,13 +28,8 @@ def patients_list(request):
             # Set the new public ID 
             set_cloudinary_public_id(patient_instance)
 
-<<<<<<< HEAD
-            # Upload the image to Cloudinary with transformations
-            result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id, 'rrat/avatars')
-=======
       # Upload the image to Cloudinary with transformations
       result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
->>>>>>> main
 
             # Set the image URL to the patient instance
             patient_instance.avatar = result['url']
@@ -57,13 +52,11 @@ def patients_list(request):
 @login_required(login_url='login')  # Protect the view_patient view
 @check_patient_hidden
 def view_patient(request, id):
-<<<<<<< HEAD
     """
     Patient page to view patient details.
     """
     patient = get_object_or_404(PatientModel, id=id)
     return render(request, 'patients/view_patient.html', {'patient': patient})
-=======
   """
   Patient page to view patient details.
   """
@@ -74,7 +67,6 @@ def view_patient(request, id):
   context["form"] = form
   context["patient"] = patient
   return render(request, 'patients/view_patient.html', context)
->>>>>>> main
 
 @login_required(login_url='login')  # Protect the update_patient view
 @check_patient_hidden
