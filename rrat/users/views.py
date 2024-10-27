@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
+from django.contrib import messages #Import messages module
 
 # Registration view
 def register_view(request):
@@ -27,7 +28,8 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # Log the user in
-                return redirect("patients:patients_list")  # Redirect to the patient dashboard or other page
+                messages.success(request, f'Welcome back, {username}!')  # Add success message
+                return redirect("patients:list")  # Redirect to the patient dashboard or other page
             else:
                 error_message = "Invalid login credentials"  # Handle invalid credentials
         else:
@@ -40,3 +42,4 @@ def login_view(request):
         "error_message": error_message
     }
     return render(request, "users/login.html", args)
+

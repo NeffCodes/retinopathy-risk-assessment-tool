@@ -41,7 +41,7 @@
   display: flex; /* Enable flexbox */
   align-items: center; /* Center content vertically */
   justify-content: center; /* Center content horizontally */
-  height: 60vh; /* Set height to full viewport height */
+  height: 40vh; /* Set height to full viewport height */
   text-align: center; /* Center text within the section */
 }
 

@@ -38,10 +38,18 @@
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Dashboard
           </a>
+          {% if user.is_authenticated %}
+          <span class="text-gray-300 mr-4">Welcome, {{ user.username }}!</span>
+          <a href="{% url 'users:logout' %}" 
+             class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
+            Logout
+          </a>
+        {% else %}
           <a href="{% url 'users:register' %}" 
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Login/Register
           </a>
+        {% endif %}
         </div>
       </div>
     </div>
