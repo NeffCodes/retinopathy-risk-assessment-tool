@@ -6,7 +6,6 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 
 ## Planned Features
 
-<<<<<<< HEAD
 ## Features
 - Image Upload: Securely upload patient retinal images for analysis.
 - Patient Data Input: Add patient details such as name, date of birth, and medical history to enhance analysis accuracy.
@@ -20,7 +19,6 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 - Database: SQLite => MySQL
 - Python Libraries:
   - TensorFlow (for machine learning model)
-=======
 This is our current plan / scope for our application.
 We do have additional ideas for stretch goals that are listed below, but are not currently planned.
 
@@ -49,13 +47,11 @@ This is subject to change as we progress through development.
 - **Database:** SQLite
 - **Python Librariies:**
   - TensorFlow(for machine learning models)
->>>>>>> main
   - Keras (for building CNNs)
   - NumPy (for numerical operations)
   - Pandas (for data manipulation)
   - OpenCV (for image processing)
   - Scikit-learn (for additional machine learning tools)
-<<<<<<< HEAD
 - Other Tools:
   - Postman (API testing)
   - Swagger (API documentation)
@@ -69,7 +65,6 @@ The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network 
 ### Type of Learning
 This project employs supervised learning, where the model is trained on a labeled dataset of retinal images. Each image in the training set is associated with a label indicating the severity of diabetic retinopathy (e.g., No_DR, Mild, Moderate, Severe, Proliferative). The model learns to map input images to these labels, and once trained, it can predict the risk level for new, unseen images.
 
-=======
 - **Other Tools:**
   - Postman (API testing)
   - Slack (Team communication)
@@ -82,19 +77,15 @@ The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network 
 
 ### Type of Learning
 This project employs supervised learning, where the model is trained on a labeled dataset of retinal images. Each image in the training set is associated with a label indicating the severity of diabetic retinopathy (e.g., No_DR, Mild, Moderate, Severe, Proliferative). The model learns to map input images to these labels, and once trained, it can predict the risk level for new, unseen images.
->>>>>>> main
 
 ## Setup and Installation
 
 ### Prerequisites
 
 - Python 3.8 or higher
-<<<<<<< HEAD
 - Node.js and npm (for frontend development) 
 - MySQL
-=======
 - Django 5.1 or higher
->>>>>>> main
 
 ### Installation Steps
 
@@ -143,7 +134,6 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
-<<<<<<< HEAD
 **3) Frontend Setup :**
 - Navigate to the frontend directory :
  ```bash
@@ -162,8 +152,6 @@ npm run dev
 - Ensure MySQL is installed and running.
 - Update the DATABASES setting in settings.py with your MySQL credentials.
 - Create and link the database.
-=======
->>>>>>> main
 
 ### Usage
 
