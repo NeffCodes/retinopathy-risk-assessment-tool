@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patient as PatientModel
 from .forms import PatientForm
 from .decorators import check_patient_hidden
-import cloudinary.uploader
 from .cloudinary_helpers import *
+from retina_photos.views import upload_retina_photo
 
 def patients_list(request):
   """
@@ -27,7 +27,7 @@ def patients_list(request):
       set_cloudinary_public_id(patient_instance)
 
       # Upload the image to Cloudinary with transformations
-      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id, 'rrat/avatars')
+      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
 
       # Set the image URL to the patient instance
       patient_instance.avatar = result['url']
@@ -53,7 +53,12 @@ def view_patient(request, id):
   Patient page to view patient details.
   """
   patient = PatientModel.objects.get(id=id)
-  return render(request, 'patients/view_patient.html', { 'patient': patient })
+  form = upload_retina_photo(request=request, patient=patient)
+
+  context = {}
+  context["form"] = form
+  context["patient"] = patient
+  return render(request, 'patients/view_patient.html', context)
 
 @check_patient_hidden
 def update_patient(request, id):
@@ -93,7 +98,7 @@ def update_patient(request, id):
         set_cloudinary_public_id(patient_instance)
 
         # Upload the new image to Cloudinary
-        result = upload_cloudinary_avatar(image_file,patient_instance.cloudinary_public_id,'rrat/avatars')
+        result = upload_cloudinary_avatar(image_file,patient_instance.cloudinary_public_id)
 
         # Set the image URL to the patient instance
         patient_instance.avatar = result['url']

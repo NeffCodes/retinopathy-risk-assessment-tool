@@ -49,14 +49,6 @@ class RetinaPhoto(models.Model):
     )
     cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
-    def save(self, *args, **kwargs):
-        if not self.cloudinary_public_id:  
-            # Convert date_created to local timezone and format it
-            date_str = localtime(self.date_created).strftime('%Y-%m-%d')
-            # Create the public ID
-            self.cloudinary_public_id = f"{self.position}---{self.id}---{date_str}"
-        super().save(*args, **kwargs)
-    
     def image_tag(self):
         return mark_safe('<img src="%s" width="150" height="150" />' % (self.image.url))
 
