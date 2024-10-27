@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage),
     path('about/', views.about),
-    path('patients/', include('patients.urls')),
+    path('patients/', include(('patients.urls', 'patients'), namespace='patients')),
+    path('retina_photos/', include(('retina_photos.urls', 'retina_photos'), namespace='retina_photos')),
     path('users/', include('users.urls')),
 ]

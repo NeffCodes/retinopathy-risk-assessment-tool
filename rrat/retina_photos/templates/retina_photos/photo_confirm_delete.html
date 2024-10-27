@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{patient.full_name}}
+{% endblock title %}
+
+{% block header %}
+    {{patient.full_name}}
+{% endblock header %}
+
+{% block content %}
+    <section class="px-4 py-6 sm:px-6 lg:px-8 bg-white rounded-md shadow-lg flex gap-4 items-center flex-col">
+        <img class="rounded size-64"
+            src="{{photo.image.url}}" 
+            alt="{{photo}}'s avatar"
+        />
+
+        <form class="flex flex-col justify-center items-center gap-4" action="" method="POST">
+            {% csrf_token %}
+            
+            <p class="font-semibold">Are you sure you want to delete this image?</p>
+
+            <div class="col-span-1 col-end-7 flex items-center justify-around gap-x-6 w-full">
+                <a href="{% url 'patients:patient_view' id=patient_id %}" type="button" class="text-sm font-semibold leading-6 text-gray-700 hover:text-teal-600">Cancel</a>
+
+                <button type="form-submit" class="rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">Confirm</button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}
