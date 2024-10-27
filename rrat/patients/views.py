@@ -28,8 +28,13 @@ def patients_list(request):
             # Set the new public ID
             set_cloudinary_public_id(patient_instance)
 
+<<<<<<< HEAD
             # Attempt to upload the image to Cloudinary
             result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
+=======
+      # Upload the image to Cloudinary with transformations
+      result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
+>>>>>>> 3640edd (Resolved merge conflict)
 
             if result.get('url'):
                 patient_instance.avatar = result['url']
@@ -60,9 +65,23 @@ def view_patient(request, id):
     Patient page to view patient details.
     """
     patient = get_object_or_404(PatientModel, id=id)
+<<<<<<< HEAD
 
     # Handle retina photo upload
     form = upload_retina_photo(request=request, patient=patient)
+=======
+    return render(request, 'patients/view_patient.html', {'patient': patient})
+  """
+  Patient page to view patient details.
+  """
+  patient = PatientModel.objects.get(id=id)
+  form = upload_retina_photo(request=request, patient=patient)
+
+  context = {}
+  context["form"] = form
+  context["patient"] = patient
+  return render(request, 'patients/view_patient.html', context)
+>>>>>>> 3640edd (Resolved merge conflict)
 
     context = {
         "form": form,
