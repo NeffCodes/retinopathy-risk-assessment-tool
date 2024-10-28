@@ -39,7 +39,8 @@
             Dashboard
           </a>
           {% if user.is_authenticated %}
-          <span class="text-gray-300 mr-4">Welcome, {{ user.username }}!</span>
+          <span class="text-white mr-4">Welcome,<strong> {{ user.username|capfirst }}!</strong>
+          </span>
           <a href="{% url 'users:logout' %}" 
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Logout
