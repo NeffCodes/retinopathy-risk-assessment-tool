@@ -46,6 +46,13 @@
             </div>
             <button type="submit" class="w-full bg-teal-500 text-white p-2 rounded transition-colors duration-300 hover:bg-teal-400">Login</button>
         </form>
+
+        <div class="mt-4 text-center">
+            <p class="text-gray-600">Don't Have an Account?</p>
+            <a href="{% url 'users:register' %}" class="inline-block mt-2 bg-blue-300 text-gray-800 p-2 rounded transition-colors duration-300 hover:bg-blue-400">
+                Register Today!
+            </a>
+        </div>
     </div>
 </body>
 </html>
