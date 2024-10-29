@@ -39,7 +39,6 @@
               class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Dashboard
           </a>
-          <span class="text-white mr-4">Welcome,<strong> {{ user.username|capfirst }}!</strong></span>
           <a href="{% url 'users:logout' %}" 
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Logout
@@ -62,6 +61,9 @@
       {% block header %}
       {% endblock header %}
     </h1>
+    {% if user.is_authenticated %}
+      <p class="text-gray-700 mt-4">Welcome back, <strong>{{ user.username|capfirst }}</strong>!</p>
+    {% endif %}
   </div>
 </header>
 
