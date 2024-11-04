@@ -1,6 +1,6 @@
-/* test classes */
+/* Test classes for debugging */
 .test1 {
-  outline: 1px solid red
+  outline: 1px solid red;
 }
 .test2 {
   outline: 1px solid blue;
@@ -9,23 +9,57 @@
   outline: 1px solid green;
 }
 
-/* to show the input form boxes for now */
+/* Custom form input styling */
 .form-with-validation input:not([type=checkbox]):not([type=radio]) {
-  border: 1px solid #037485 ;
+  border: 1px solid #037485; /* Favorite color for form border */
   border-radius: 0.25rem;
   padding: 0.25rem;
   margin: 0.25rem 0;
 }
+
+/* Custom button styling */
 .form-with-validation button {
-  border: 1px solid #038515;
+  border: 1px solid #038515; /* Favorite color for button border */
   border-radius: 1rem;
   color: #038515;
   font-weight: bold;
-  padding: 0.5rem 0.375rem; 
+  padding: 0.5rem 0.375rem;
   margin-top: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover transition */
 }
 
+/* Button hover effect using favorite color */
 .form-with-validation button:hover {
-  background-color: #037485 ;
+  background-color: #037485; /* Favorite hover color */
   color: #fff;
 }
+
+.hero-section {
+  background-color: #037485; /* Set background color */
+  color: white; /* Change text color for better contrast */
+  margin-top: 0; /* Remove any top margin */
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+<<<<<<< HEAD
+<<<<<<< HEAD
+  height: 40vh; /* Set height to full viewport height */
+=======
+  height: 60vh; /* Set height to full viewport height */
+>>>>>>> 48dabdf (1) Configured URL patterns for user registration and login endpoints.  2) Protected patient views with @login_required decorator to restrict access to authorized users. 3) Set up error handling for invalid login attempts)
+=======
+  height: 40vh; /* Set height to full viewport height */
+>>>>>>> 56422fa (1) Allowed for the display of username upon log-in + access to patient dashboard)
+  text-align: center; /* Center text within the section */
+}
+
+footer {
+  background-color: #1e3a8a; /* Adjust footer background color */
+  color: white; /* Set footer text color */
+  padding: 1rem 0; /* Add padding for top and bottom */
+  display: flex; /* Enable flexbox for footer */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  text-align: center; /* Center text within the footer */
+}
+

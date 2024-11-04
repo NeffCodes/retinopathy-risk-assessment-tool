@@ -5,12 +5,80 @@
 {% endblock title %}
 
 {% block header %}
-  Home
+  <!-- No title --> 
 {% endblock header %}
 
-
 {% block content %}
-  <section class="px-4 py-6 sm:px-6 lg:px-8 bg-white rounded-md shadow-lg">
-  <h2 class="text-3xl/loose font-bold tracking-tight text-indigo-950">Welcome!</h2>
+
+  <!-- Hero Section -->
+  <section class="hero-section bg-indigo-900 text-white py-16 mt-0">
+    <div class="container mx-auto text-center flex items-center flex-col">
+      <h2 class="hero-heading text-4xl font-bold mb-4">Transforming Diabetic Eye Care with AI</h2>
+      <p class="hero-subheading text-lg mb-6">Empowering Healthcare Providers to Detect Diabetic Retinopathy Early.</p>
+      <a href="{% url 'users:register' %}" class="hero-button bg-white text-indigo-900 px-6 py-3 rounded-full font-semibold hover:bg-indigo-100 transition">Get Started</a>
+    </div>
   </section>
+
+ <!-- Overview of Services -->
+ <section class="py-10">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-indigo-950 text-center">Our Services</h2>
+    <div class="overflow-x-auto mt-8">
+      <div class="flex space-x-6">
+        <div class="bg-white rounded-lg shadow-lg p-6 flex-shrink-0 w-64">
+          <h3 class="font-semibold text-indigo-800">AI-Powered Assessments</h3>
+          <p class="mt-2 text-gray-700">Our AI analyzes fundus photos to determine diabetic retinopathy levels.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-6 flex-shrink-0 w-64">
+          <h3 class="font-semibold text-indigo-800">Patient Monitoring</h3>
+          <p class="mt-2 text-gray-700">Track disease progression with regular uploads and assessments.</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-6 flex-shrink-0 w-64">
+          <h3 class="font-semibold text-indigo-800">Educational Resources</h3>
+          <p class="mt-2 text-gray-700">Access articles and videos for patient education on diabetic retinopathy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Scrollable Feature Section -->
+<section class="py-10">
+  <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-indigo-950 text-center">Why Choose EyeQ?</h2>
+      <div class="overflow-x-auto mt-6">
+          <div class="flex space-x-6">
+              <div class="bg-white rounded-lg shadow-lg p-6 flex-shrink-0 w-64">
+                  <p class="font-semibold text-indigo-800">Fast Assessments</p>
+                  <p class="text-gray-700">Get instant results within minutes.</p>
+              </div>
+              <div class="bg-white rounded-lg shadow-lg p-6 flex-shrink-0 w-64">
+                  <p class="font-semibold text-indigo-800">Data Security</p>
+                  <p class="text-gray-700">Your patient data is safe with us.</p>
+              </div>
+              <div class="bg-white rounded-lg shadow-lg p-6 flex-shrink-0 w-64">
+                  <p class="font-semibold text-indigo-800">Continuous Learning</p>
+                  <p class="text-gray-700">Our AI model improves with every upload.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-950 text-white py-4 w-full">
+  <div class="container mx-auto text-center">
+      <p>&copy; 2024 EyeQ. All rights reserved.</p>
+      <div class="mt-2">
+          <a href="/terms" class="text-indigo-200 hover:text-indigo-100">Terms of Service</a> |
+          <a href="/privacy" class="text-indigo-200 hover:text-indigo-100">Privacy Policy</a> |
+          <a href="/contact" class="text-indigo-200 hover:text-indigo-100">Contact Us</a>
+      </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
 {% endblock content %}

@@ -147,6 +147,11 @@ cloudinary.config(
     api_secret = CLOUDINARY_API_SECRET
 )
 
+# Authentication settings
+LOGIN_URL = 'users:login'      # Points to the login view
+LOGIN_REDIRECT_URL = '/'        # Redirect to home after login
+LOGOUT_REDIRECT_URL = '/'       # Redirect to home after logout
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
