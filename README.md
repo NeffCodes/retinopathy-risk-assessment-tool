@@ -60,7 +60,9 @@ This is subject to change as we progress through development.
   - 
  
 ## Machine Leaning Model
-The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network (CNN) for image classification, specifically trained to identify the risk of diabetic retinopathy from retinal images. The model is built using TensorFlow and Keras libraries, using the power of CNNs to automatically detect features in retinal images that may indicate the presence of diabetic retinopathy.
+The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network (CNN) for image classification, specifically trained to identify the risk of diabetic retinopathy from retinal images. The model is built using TensorFlow and Keras libraries, using the power of CNNs to automatically detect features in retinal images that may indicate the presence of diabetic retinopathy.The model code is housed in a separate repository.
+
+**Model Repository**: [EyeQ Diabetic Retinopathy Model](https://github.com/SNMeans/rrat-diabetic-retinopathy-CNNmodel)
 
 ### Type of Learning
 This project employs supervised learning, where the model is trained on a labeled dataset of retinal images. Each image in the training set is associated with a label indicating the severity of diabetic retinopathy (e.g., No_DR, Mild, Moderate, Severe, Proliferative). The model learns to map input images to these labels, and once trained, it can predict the risk level for new, unseen images.
