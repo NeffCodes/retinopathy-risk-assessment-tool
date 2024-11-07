@@ -34,6 +34,7 @@
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             About
           </a>
+<<<<<<< HEAD
           <a href="{% url 'patients:list' %}" 
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Dashboard
@@ -42,6 +43,23 @@
              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
             Login/Register
           </a>
+=======
+          {% if user.is_authenticated %}
+            <a href="{% url 'patients:list' %}" 
+              class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
+            Dashboard
+          </a>
+          <a href="{% url 'users:logout' %}" 
+             class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
+            Logout
+          </a>
+        {% else %}
+          <a href="{% url 'users:login' %}" 
+             class="rounded-md px-3 py-2 text-sm font-semibold text-gray-300 hover:bg-blue-800/55 hover:text-white">
+            Login
+          </a>
+        {% endif %}
+>>>>>>> b3bbbc5f42648fc7a3cd5d923688293eb0e65cae
         </div>
       </div>
     </div>
@@ -54,6 +72,7 @@
       {% block header %}
       {% endblock header %}
     </h1>
+<<<<<<< HEAD
   </div>
 </header>
 
@@ -61,10 +80,26 @@
   {% block content %}
   {% endblock content %}
 </main>
+=======
+    {% if user.is_authenticated %}
+      <p class="text-gray-700 mt-4">Welcome back, <strong>{{ user.username|capfirst }}</strong>!</p>
+    {% endif %}
+  </div>
+</header>
+>>>>>>> b3bbbc5f42648fc7a3cd5d923688293eb0e65cae
 
-  <main class="mx-auto max-w-7xl mt-8 pb-8">
-    {% block content %}
-    {% endblock content %}
-  </main>
+<main class="mx-auto max-w-7xl mt-0"> <!-- Ensure no margin at the top -->
+  {% block content %}
+  {% endblock content %}
+</main>
+
+<main class="mx-auto max-w-7xl mt-8 pb-8">
+  {% block additional_content %}
+  {% endblock additional_content %}
+</main>
 </body>
 </html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b3bbbc5f42648fc7a3cd5d923688293eb0e65cae

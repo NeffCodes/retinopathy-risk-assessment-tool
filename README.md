@@ -16,7 +16,7 @@ The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web applicat
 ## Technology Stack
 - Backend: Python (Django)
 - Frontend: Javascript, Material-UI, Tailwind CSS
-- Database: SQLite => MySQL
+- Database: SQLite 
 - Python Libraries:
   - TensorFlow (for machine learning model)
 This is our current plan / scope for our application.
@@ -71,20 +71,13 @@ This project employs supervised learning, where the model is trained on a labele
   - GitHub (Version control)
   - Github Projects (Project management)
 
-## Machine Learning Model
-
-The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network (CNN) for image classification, specifically trained to identify the risk of diabetic retinopathy from retinal images. The model is built using TensorFlow and Keras libraries, leveraging the power of CNNs to automatically detect features in retinal images that may indicate the presence of diabetic retinopathy.
-
-### Type of Learning
-This project employs supervised learning, where the model is trained on a labeled dataset of retinal images. Each image in the training set is associated with a label indicating the severity of diabetic retinopathy (e.g., No_DR, Mild, Moderate, Severe, Proliferative). The model learns to map input images to these labels, and once trained, it can predict the risk level for new, unseen images.
-
 ## Setup and Installation
 
 ### Prerequisites
 
 - Python 3.8 or higher
-- Node.js and npm (for frontend development) 
-- MySQL
+- Node.js 
+- SQLite
 - Django 5.1 or higher
 
 ### Installation Steps
@@ -134,22 +127,9 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
-**3) Frontend Setup :**
-- Navigate to the frontend directory :
- ```bash
-cd frontend
-```
-- Install the necessary packages :
-```bash
-npm install
-```
-- Start the development server:
- ```bash
-npm run dev
-```
 
 **4) Database Configuration :**
-- Ensure MySQL is installed and running.
+- Ensure SQLite is installed and running.
 - Update the DATABASES setting in settings.py with your MySQL credentials.
 - Create and link the database.
 

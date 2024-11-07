@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,3 +17,62 @@
 </body>
 </html>
 
+=======
+<html>
+<head>
+    <title>Login</title>
+    
+    {% load static %}
+    
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"> <!-- Link to your custom styles -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Ensure Tailwind is included -->
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="bg-white p-6 rounded-lg shadow-md w-96">
+        <h2 class="text-2xl font-sleek text-center mb-2">Login to Your Account</h2>
+        
+        <p class="text-center text-gray-600 mb-4">
+            EyeQ: Your Partner in Ocular Health
+        </p>
+        
+
+        <!--Welcome Messages-->
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="bg-teal-100 border-t border-b border-teal-500 text-teal-700 px-4 py-3" role="alert">
+                        <p class="text-sm">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!--Error Messages-->
+        {% if error_message %}
+            <p class="text-red-500 text-sm mb-4">{{ error_message }}</p>
+        {% endif %}
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" name="username" id="username" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring focus:ring-teal-200 focus:ring-opacity-50" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-teal-500 focus:ring focus:ring-teal-200 focus:ring-opacity-50" required>
+            </div>
+            <button type="submit" class="w-full bg-teal-500 text-white p-2 rounded transition-colors duration-300 hover:bg-teal-400">Login</button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <p class="text-gray-600">Don't Have an Account?</p>
+            <a href="{% url 'users:register' %}" class="inline-block mt-2 bg-blue-300 text-gray-800 p-2 rounded transition-colors duration-300 hover:bg-blue-400">
+                Register Today!
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+>>>>>>> b3bbbc5f42648fc7a3cd5d923688293eb0e65cae
