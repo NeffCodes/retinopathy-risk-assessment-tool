@@ -8,10 +8,10 @@ class PatientModelAdmin(admin.ModelAdmin):
     readonly_fields = ("cloudinary_public_id",)
 
     # What shows up on the admin panel list
-    list_display = ("id","first_name","last_name","hidden","date_created","date_updated", 'avatar')
+    list_display = ("id","first_name","last_name","hidden","date_created","date_updated", 'user')
 
     # what shows up when you edit or add a patient via the admin panel
-    fields = ("first_name","last_name","date_of_birth","hidden", "avatar", "cloudinary_public_id")
+    fields = ("first_name","last_name","date_of_birth","hidden", "user", "avatar", "cloudinary_public_id")
 
 
     """

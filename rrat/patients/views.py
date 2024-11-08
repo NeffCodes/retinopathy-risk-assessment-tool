@@ -20,6 +20,9 @@ def patients_list(request):
     if form.is_valid():
         # Create a patient instance without saving yet
         patient_instance = form.save(commit=False)
+        
+        # Set the patient's user
+        patient_instance.user = request.user
 
         # Handle avatar image upload
         if request.FILES.get('avatar'):
@@ -45,7 +48,7 @@ def patients_list(request):
         print(form.errors)
 
     # Fetch all non-hidden patients from the database
-    patients = PatientModel.objects.all().exclude(hidden=True).order_by('last_name')
+    patients = PatientModel.objects.filter(user=request.user).exclude(hidden=True).order_by('last_name')
 
     # Set context for rendering
     context['form'] = form
