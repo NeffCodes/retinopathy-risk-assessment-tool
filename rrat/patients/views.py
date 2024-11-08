@@ -6,6 +6,8 @@ from .forms import PatientForm
 from .decorators import check_patient_hidden
 from .cloudinary_helpers import *
 from retina_photos.views import upload_retina_photo
+from retina_photos.models import RetinaImage
+
 
 @login_required(login_url='users:login')  # Protect the patients_list view
 def patients_list(request):
