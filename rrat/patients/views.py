@@ -76,7 +76,7 @@ def patient_images(request, id):
     patient = get_object_or_404(PatientModel, id=id)
 
     # Retrieve all retina images for the patient, ordered by most recent
-    images = RetinaImage.objects.filter(patient=patient).order_by('-date_created')
+    images = RetinaPhoto.objects.filter(patient=patient).order_by('-date_created')
 
     # Pass images and patient information to the template
     return render(request, 'patients/view_patient.html', {
