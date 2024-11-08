@@ -59,10 +59,12 @@ def view_patient(request, id):
     """
     patient = get_object_or_404(PatientModel, id=id)
     form = upload_retina_photo(request=request, patient=patient)
+    images = RetinaPhoto.objects.filter(patient=patient).order_by('-date_created')
 
     context = {
         "form": form,
-        "patient": patient
+        "patient": patient,
+        "images": images,
     }
 
     return render(request, 'patients/view_patient.html', context)
