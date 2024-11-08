@@ -61,21 +61,11 @@
       {% block header %}
       {% endblock header %}
     </h1>
-<<<<<<< HEAD
-  </div>
-</header>
-
-<main class="mx-auto max-w-7xl mt-0"> <!-- Ensure no margin at the top -->
-  {% block content %}
-  {% endblock content %}
-</main>
-=======
     {% if user.is_authenticated %}
       <p class="text-gray-700 mt-4">Welcome back, <strong>{{ user.username|capfirst }}</strong>!</p>
     {% endif %}
   </div>
 </header>
->>>>>>> b3bbbc5f42648fc7a3cd5d923688293eb0e65cae
 
 <main class="mx-auto max-w-7xl mt-0"> <!-- Ensure no margin at the top -->
   {% block content %}
@@ -88,7 +78,3 @@
 </main>
 </body>
 </html>
-<<<<<<< HEAD
-=======
-
->>>>>>> b3bbbc5f42648fc7a3cd5d923688293eb0e65cae
