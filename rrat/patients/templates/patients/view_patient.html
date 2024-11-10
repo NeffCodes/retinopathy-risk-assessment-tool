@@ -22,7 +22,7 @@
       <div class="image-item border rounded-md shadow-sm p-4">
           <img src="{{ photo.image.url }}" alt="Retina Image" style="width: 256px; height: 256px; object-fit: cover;" />
           <div class="image-details text-sm">
-              <p><strong>Position:</strong> {{ photo.position }}</p>
+              <p><strong>Position:</strong> {{ photo.position|upper}}</p>
               <p><strong>Date Created:</strong> {{ photo.date_created|date:"F d, Y" }}</p>
               <p><strong>Status:</strong> {{ photo.status }}</p>
               <p><strong>Prognosis:</strong> {{ photo.prognosis }}</p>
