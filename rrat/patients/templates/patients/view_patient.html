@@ -15,4 +15,21 @@
   class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
 
   {% include "retina_photos/partials/add_new_retina_photo.html" %}
+  <!-- Section to display existing retina photos for the patient -->
+  <h2 class="text-lg font-semibold mt-8">Existing Retina Photos</h2>
+  <div class="image-gallery mt-4">
+      {% for photo in images %}
+      <div class="image-item border rounded-md shadow-sm p-4">
+          <img src="{{ photo.image.url }}" alt="Retina Image" style="width: 256px; height: 256px; object-fit: cover;" />
+          <div class="image-details text-sm">
+            <p><span class="font-semibold">Position:</span> {{ photo.position|upper }}</p>
+            <p><span class="font-semibold">Date Created:</span> {{ photo.date_created|date:"F d, Y, h:i A" }}</p>
+            <p><span class="font-semibold">Status:</span> {{ photo.status }}</p>
+            <p><span class="font-semibold">Prognosis:</span> {{ photo.prognosis }}</p>
+          </div>
+      </div>
+      {% empty %}
+      <p>No retina photos available for this patient.</p>
+      {% endfor %}
+  </div> 
 {% endblock content %}
