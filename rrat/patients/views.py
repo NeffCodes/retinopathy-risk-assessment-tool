@@ -69,23 +69,6 @@ def view_patient(request, id):
 
     return render(request, 'patients/view_patient.html', context)
 
-@login_required(login_url='users:login')
-def patient_images(request, id):
-    """
-    Retrieve all retina images associated with a specific patient and display them.
-    """
-    # Get the patient by ID
-    patient = get_object_or_404(PatientModel, id=id)
-
-    # Retrieve all retina images for the patient, ordered by most recent
-    images = RetinaPhoto.objects.filter(patient=patient).order_by('-date_created')
-
-    # Pass images and patient information to the template
-    return render(request, 'patients/view_patient.html', {
-        'patient': patient,
-        'images': images,
-    })
-
 @login_required(login_url='users:login')  # Protect the update_patient view
 @check_patient_hidden
 def update_patient(request, id):
