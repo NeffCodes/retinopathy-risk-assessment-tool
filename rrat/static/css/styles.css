@@ -36,25 +36,12 @@
 
 .hero-section {
   background-color: #037485; /* Set background color */
-<<<<<<< HEAD
-  color: white; /* Optional: Change text color for better contrast */
-  margin-top: 0; /* Remove any top margin */
-}
-=======
   color: white; /* Change text color for better contrast */
   margin-top: 0; /* Remove any top margin */
   display: flex; /* Enable flexbox */
   align-items: center; /* Center content vertically */
   justify-content: center; /* Center content horizontally */
-<<<<<<< HEAD
-<<<<<<< HEAD
   height: 40vh; /* Set height to full viewport height */
-=======
-  height: 60vh; /* Set height to full viewport height */
->>>>>>> 48dabdf (1) Configured URL patterns for user registration and login endpoints.  2) Protected patient views with @login_required decorator to restrict access to authorized users. 3) Set up error handling for invalid login attempts)
-=======
-  height: 40vh; /* Set height to full viewport height */
->>>>>>> 56422fa (1) Allowed for the display of username upon log-in + access to patient dashboard)
   text-align: center; /* Center text within the section */
 }
 
