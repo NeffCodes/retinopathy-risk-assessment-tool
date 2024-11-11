@@ -8,5 +8,5 @@ urlpatterns = [
     path('<uuid:id>/', views.view_patient, name="patient_view"),
     path('<uuid:id>/update/', views.update_patient, name="patient_update"),
     path('<uuid:id>/delete/', views.delete_patient, name="patient_delete"),
-    path('<int:id>/images/', views.patient_images, name='patient_images'),
+    path('<uuid:id>/images/', views.patient_images, name='patient_images'),
 ]
