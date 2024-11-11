@@ -1514,8 +1514,6 @@ video {
     padding-right: 2rem;
   }
 }
-<<<<<<< HEAD
-=======
 
 @media (prefers-color-scheme: dark) {
   .dark\:via-neutral-400 {
@@ -1523,4 +1521,3 @@ video {
     --tw-gradient-stops: var(--tw-gradient-from), #a3a3a3 var(--tw-gradient-via-position), var(--tw-gradient-to);
   }
 }
->>>>>>> main
