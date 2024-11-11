@@ -2,6 +2,7 @@ from django.db import models
 
 import uuid
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Patient(models.Model):
@@ -10,6 +11,13 @@ class Patient(models.Model):
         default=uuid.uuid4, 
         editable=False,
         unique=True
+    )
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        related_name='patients',
+        null=False,
+        blank=False,
     )
     first_name = models.CharField(max_length=75)
     last_name = models.CharField(max_length=75)
