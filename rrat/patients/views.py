@@ -6,6 +6,8 @@ from .forms import PatientForm
 from .decorators import check_patient_hidden, check_permission_to_view_patient
 from .cloudinary_helpers import *
 from retina_photos.views import upload_retina_photo
+from retina_photos.models import RetinaPhoto
+
 
 @login_required(login_url='users:login')  # Protect the patients_list view
 def patients_list(request):
@@ -27,11 +29,7 @@ def patients_list(request):
         # Handle avatar image upload
         if request.FILES.get('avatar'):
             image_file = request.FILES['avatar']
-
-            # Set the new public ID
             set_cloudinary_public_id(patient_instance)
-
-            # Attempt to upload the image to Cloudinary
             result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
 
             if result.get('url'):
@@ -42,10 +40,9 @@ def patients_list(request):
         # Save patient instance to the database
         patient_instance.save()
         messages.success(request, "Patient added successfully!")
-        return redirect("patients:list")  # Ensure the redirect uses the correct namespaced URL
+        return redirect("patients:list")
     else:
         messages.error(request, "Please correct the errors below.")
-        print(form.errors)
 
     # Fetch all non-hidden patients from the database
     patients = PatientModel.objects.filter(user=request.user).exclude(hidden=True).order_by('last_name')
@@ -56,6 +53,7 @@ def patients_list(request):
 
     return render(request, 'patients/patients_list.html', context)
 
+
 @login_required(login_url='users:login')  # Protect the view_patient view
 @check_patient_hidden
 @check_permission_to_view_patient
@@ -64,13 +62,13 @@ def view_patient(request, id):
     Patient page to view patient details.
     """
     patient = get_object_or_404(PatientModel, id=id)
-
-    # Handle retina photo upload
     form = upload_retina_photo(request=request, patient=patient)
+    images = RetinaPhoto.objects.filter(patient=patient).order_by('-date_created')
 
     context = {
         "form": form,
-        "patient": patient
+        "patient": patient,
+        "images": images,
     }
 
     return render(request, 'patients/view_patient.html', context)
@@ -89,18 +87,14 @@ def update_patient(request, id):
     form = PatientForm(request.POST or None, request.FILES or None, instance=patient)
 
     if form.is_valid():
-        patient_instance = form.save(commit=False)  # Don't save yet
+        patient_instance = form.save(commit=False)
 
         # Handle avatar image update
         if request.FILES.get('avatar'):
             image_file = request.FILES['avatar']
-
-            # Remove old image from Cloudinary
             cloud = destroy_cloudinary_image(patient_instance.cloudinary_public_id)
 
-            # Check for the result of the delete operation
             if cloud.get('result') == 'ok':
-                # Set a new public ID and upload the new image
                 set_cloudinary_public_id(patient_instance)
                 result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
 
@@ -108,37 +102,34 @@ def update_patient(request, id):
                     patient_instance.avatar = result['url']
                 else:
                     messages.error(request, "Failed to upload new avatar to Cloudinary.")
-                    return redirect("patients:list")  # Return on error
+                    return redirect("patients:list")
 
         # Save updated patient instance
         patient_instance.save()
         messages.success(request, "Patient updated successfully!")
         return redirect("patients:patient_view", id)
-
     else:
         messages.error(request, "Please correct the errors below.")
-        print(form.errors)
 
-    # Set context for rendering
     context["form"] = form
     context["patient"] = patient
 
     return render(request, 'patients/update_patient.html', context)
+
 
 @login_required(login_url='users:login')  # Protect the delete_patient view
 @check_patient_hidden
 @check_permission_to_view_patient
 def delete_patient(request, id):
     """
-    Soft deletes patient from database by marking the hidden field as true.
+    Soft deletes patient from the database by marking the hidden field as true.
     """
     patient = get_object_or_404(PatientModel, id=id)
 
-    # Confirm deletion via POST request
     if request.method == "POST":
-        patient.hidden = True  # Mark as hidden
+        patient.hidden = True
         patient.save(update_fields=["hidden"])
-        messages.success(request, "Patient deleted successfully!")  # Feedback on successful deletion
+        messages.success(request, "Patient deleted successfully!")
         return redirect("patients:list")
 
     context = {"patient": patient}

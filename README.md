@@ -130,7 +130,6 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-
 **4) Database Configuration :**
 - Ensure SQLite is installed and running.
 - Update the DATABASES setting in settings.py with your MySQL credentials.
