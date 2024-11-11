@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Patient as PatientModel
 from .forms import PatientForm
-from .decorators import check_patient_hidden
+from .decorators import check_patient_hidden, check_permission_to_view_patient
 from .cloudinary_helpers import *
 from retina_photos.views import upload_retina_photo
 
@@ -20,6 +20,9 @@ def patients_list(request):
     if form.is_valid():
         # Create a patient instance without saving yet
         patient_instance = form.save(commit=False)
+        
+        # Set the patient's user
+        patient_instance.user = request.user
 
         # Handle avatar image upload
         if request.FILES.get('avatar'):
@@ -45,7 +48,7 @@ def patients_list(request):
         print(form.errors)
 
     # Fetch all non-hidden patients from the database
-    patients = PatientModel.objects.all().exclude(hidden=True).order_by('last_name')
+    patients = PatientModel.objects.filter(user=request.user).exclude(hidden=True).order_by('last_name')
 
     # Set context for rendering
     context['form'] = form
@@ -55,6 +58,7 @@ def patients_list(request):
 
 @login_required(login_url='users:login')  # Protect the view_patient view
 @check_patient_hidden
+@check_permission_to_view_patient
 def view_patient(request, id):
     """
     Patient page to view patient details.
@@ -73,6 +77,7 @@ def view_patient(request, id):
 
 @login_required(login_url='users:login')  # Protect the update_patient view
 @check_patient_hidden
+@check_permission_to_view_patient
 def update_patient(request, id):
     """
     Patient page to change patient details.
@@ -122,6 +127,7 @@ def update_patient(request, id):
 
 @login_required(login_url='users:login')  # Protect the delete_patient view
 @check_patient_hidden
+@check_permission_to_view_patient
 def delete_patient(request, id):
     """
     Soft deletes patient from database by marking the hidden field as true.
