@@ -68,3 +68,9 @@ def test_delete_retina_photo(client, mock_user_and_patient, mock_cloudinary_uplo
     # Ensure the user is redirected to the photos list
     assert response.status_code == 302
     assert response.url == f'/patients/{patient.id}/'
+
+def test_delete_nonexistent_retina_photo(client):
+    # Test that attempting to delete a non-existent RetinaPhoto results in a 404 error
+    delete_url = '/retina_photos/999/delete/'
+    response = client.post(delete_url)
+    assert response.status_code == 404
