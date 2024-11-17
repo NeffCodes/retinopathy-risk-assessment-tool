@@ -21,7 +21,6 @@ class RetinaPhoto(models.Model):
         related_name='retina_photos',
         null=False,
         blank=False,
-        db_column='patient_id'
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
