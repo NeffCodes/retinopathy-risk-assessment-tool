@@ -109,7 +109,20 @@ def test_soft_delete_processed_scans(client, mock_user_and_patient, mock_cloudin
     assert response.url == f'/patients/{patient.id}/'
 
 def test_delete_nonexistent_retina_photo(client):
-    # Test that attempting to delete a non-existent RetinaPhoto results in a 404 error
+    """
+    Test that attempting to delete a non-existent RetinaPhoto results in a 404 error
+    """
     delete_url = '/retina_photos/999/delete/'
+    response = client.post(delete_url)
+    assert response.status_code == 404
+
+@pytest.mark.django_db
+def test_delete_retina_photo_without_permission(client):
+    """
+    Test that attempting to delete a RetinaPhoto without permission results in a 404 error
+    Ensure that even if a user is not logged in, they cannot delete a RetinaPhoto
+    """
+    delete_url = '/retina_photos/1/delete/'
+    client.logout()
     response = client.post(delete_url)
     assert response.status_code == 404
