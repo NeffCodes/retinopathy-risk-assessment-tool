@@ -7,6 +7,7 @@ from .decorators import check_patient_hidden, check_permission_to_view_patient
 from .cloudinary_helpers import *
 from retina_photos.views import upload_retina_photo
 from retina_photos.models import RetinaPhoto
+from retina_photos.forms import RetinaForm
 
 
 @login_required(login_url='users:login')  # Protect the patients_list view
@@ -60,11 +61,23 @@ def patients_list(request):
 def view_patient(request, id):
     """
     Patient page to view patient details.
+    Handles displaying the form and uploaded retina scans.
     """
+    # Retrieve the patient instance
     patient = get_object_or_404(PatientModel, id=id)
-    form = upload_retina_photo(request=request, patient=patient)
+
+    # Retrieve retina images associated with the patient
     images = RetinaPhoto.objects.filter(patient=patient).order_by('-date_created')
 
+    # If a POST request is made, delegate to the upload logic
+    if request.method == "POST":
+        # Perform upload logic and handle redirect
+        return upload_retina_photo(request=request, patient=patient)
+
+    # On GET, provide an empty form for display
+    form = RetinaForm()
+
+    # Render the page with patient details and the form
     context = {
         "form": form,
         "patient": patient,
@@ -72,6 +85,7 @@ def view_patient(request, id):
     }
 
     return render(request, 'patients/view_patient.html', context)
+
 
 @login_required(login_url='users:login')  # Protect the update_patient view
 @check_patient_hidden

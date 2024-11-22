@@ -7,33 +7,36 @@ from .choices import StatusChoices
 
 def upload_retina_photo(request, patient):
     """
-    Logic to add new retina photo to cloudinary db
-    Returns retina form context
+    Logic to add a new retina photo to Cloudinary db.
+    Handles POST/Redirect/GET to prevent duplicate submissions on page refresh.
     """
-    retinaForm = RetinaForm(request.POST or None, request.FILES or None)
+    if request.method == "POST":
+        retinaForm = RetinaForm(request.POST, request.FILES)
+        
+        # Check if form data is valid
+        if retinaForm.is_valid():
+            # Get data from form instance
+            image_instance = retinaForm.save(commit=False)
+            image_instance.patient = patient 
+            
+            # If instance has an image
+            if request.FILES.get('image'):
+                image_file = request.FILES['image']
 
-    # check if form data is valid
-    if retinaForm.is_valid():
-        # get data from form instance
-        image_instance = retinaForm.save(commit=False) # Don't save the form yet
+                # Upload image to Cloudinary with transformations
+                result = upload_cloudinary_retina(image_file, image_instance)
 
-        # Set the patient id
-        image_instance.patient = patient
+                # Set the image URL to the patient instance
+                image_instance.image = result['url']
 
-        # If instance has an image
-        if request.FILES.get('image'):
-            image_file = request.FILES['image']
+                # Save the image instance
+                image_instance.save()
 
-            # Upload image to Cloudinary with transformations
-            result = upload_cloudinary_retina(image_file, image_instance)
+            # Redirect to the patient view after successful submission
+            return redirect("patients:patient_view", id=patient.id)
 
-            # Set the image URL to the patient instance
-            image_instance.image = result['url']
-
-            image_instance.save()
-        else:
-            print(retinaForm.errors)
-    return retinaForm
+    # If not POST, return an empty form
+    return RetinaForm()
 
 def delete_retina_photo(request, id):
     """
