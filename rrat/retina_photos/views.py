@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import Http404
 from .models import RetinaPhoto as RetinaPhotoModel
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db, get_prognosis_choice
@@ -74,21 +74,17 @@ def delete_retina_photo(request, id):
 def analyze_retina_photo(request, id):
     # Retrieve the image from the database
     image = get_object_or_404(RetinaPhotoModel, id=id)
+    patient_id = image.patient.id
     
-    # Verify image has not been processed so that it won't be analyzed multiple times
+    # Verify image has not been processed so 
+    #that it won't be analyzed multiple times
     if image.status == StatusChoices.DONE or image.status == StatusChoices.PENDING:
         messages.error(request, "Image has already been analyzed.")
-        return redirect("patients:patient_view", id=image.patient.id)
-
-    api_url = settings.AGENT_URL + '/analyze'
-    print(f"API URL: {api_url}")
-
-    # get patient ID
-    patient_id = image.patient.id
-    patient = PatientModel.objects.get(id=patient_id)
-
+        return redirect("patients:patient_view", id=patient_id)
 
     try:
+        api_url = settings.AGENT_URL + '/analyze'
+
         image.status = StatusChoices.PENDING
         image.save()
 
@@ -97,7 +93,8 @@ def analyze_retina_photo(request, id):
         response_data = response.json()
         response_result = response_data.get('result')
     except Exception as e:
-        return JsonResponse({'error': f'API request failed: {e}'}, status=500)
+        messages.error(request, f"Failed to analyze image: {e}")
+        return Http404('Failed to analyze image.')
     
     # Update the status and prognosis of the image
     prognosis_choice = get_prognosis_choice(response_result)
@@ -111,5 +108,5 @@ def analyze_retina_photo(request, id):
     print(f"Response: {response_result}")
     print('+============================')
     print('/n')
-    # return JsonResponse({"message": "Image analyzed successfully."})
+    messages.success(request, "Image successfully analyzed.")
     return redirect("patients:patient_view", id=patient_id)

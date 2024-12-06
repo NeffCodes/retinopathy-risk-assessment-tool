@@ -78,7 +78,11 @@ def hard_delete_image_from_all_db(image_obj):
     except Exception as e:
         print(f"Error trying to delete image in Cloudinary: {e}")
 
-def get_prognosis_choice(api_result: int) -> str:
+def get_prognosis_choice(api_result: int) -> str | None:
+    if not isinstance(api_result, int) or api_result < 0 or api_result > 4:
+        print(f"Oops, Invalid API result: {api_result}")
+        return None
+
     API_RESULT_MAPPING = {
         0:PrognosisChoices.NORMAL,
         1:PrognosisChoices.MILD,
