@@ -5,7 +5,8 @@ from django.http import JsonResponse
 from .models import RetinaPhoto as RetinaPhotoModel
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db
-from .choices import StatusChoices
+from .choices import StatusChoices, PrognosisChoices
+from patients.models import Patient as PatientModel
 
 
 
@@ -70,14 +71,50 @@ def delete_retina_photo(request, id):
     return render(request, 'retina_photos/photo_confirm_delete.html', context)
 
 def analyze_retina_photo(request, id):
-    api_url = settings.AGENT_URL
+    
+    # TODO: Add check if image already processed or pending
+
+    api_url = settings.AGENT_URL + '/analyze'
     print(f"API URL: {api_url}")
 
+    # Retrieve the image from the database
+    image = get_object_or_404(RetinaPhotoModel, id=id)
+    # get patient ID
+    patient_id = image.patient.id
+    patient = PatientModel.objects.get(id=patient_id)
+
+
     try:
-        response = requests.get(api_url)
-        print(f"Response: {response}")
+        image.status = StatusChoices.PENDING
+        image.save()
+
+        response = requests.post(api_url)
+        response.raise_for_status()
+        response_data = response.json()
+        response_result = response_data.get('result')
     except Exception as e:
-        print(f"Error: {e}")
+        return JsonResponse({'error': f'API request failed: {e}'}, status=500)
     
-    result = response.json()
-    return JsonResponse(result)
+    # Update the status and prognosis of the image
+    
+    # Map the result to a prognosis choice
+    API_RESULT_MAPPING = {
+        0:PrognosisChoices.NORMAL,
+        1:PrognosisChoices.MILD,
+        2:PrognosisChoices.MODERATE,
+        3:PrognosisChoices.SEVERE,
+        4:PrognosisChoices.PROLIFERATIVE
+    }
+    print(f"Mapped Result: {API_RESULT_MAPPING.get(response_result)} ")
+    prognosis_choice = API_RESULT_MAPPING.get(response_result)
+    image.prognosis = prognosis_choice
+    image.status = StatusChoices.DONE
+    image.save()
+
+    print(f"Retina photo analyzed: {image}")
+    print(f"Prognosis: {prognosis_choice}")
+    print(f"Status: {image.status}")
+    print(f"Response: {response_result}")
+    print('+============================')
+    print('/n')
+    return JsonResponse(response_result)
