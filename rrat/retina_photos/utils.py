@@ -1,5 +1,6 @@
 from django.utils.timezone import now
 import cloudinary.uploader
+from .choices import PrognosisChoices
 
 def set_retina_cloudinary_public_id(image_instance):
     """
@@ -76,3 +77,14 @@ def hard_delete_image_from_all_db(image_obj):
 
     except Exception as e:
         print(f"Error trying to delete image in Cloudinary: {e}")
+
+def get_prognosis_choice(api_result: int) -> str:
+    API_RESULT_MAPPING = {
+        0:PrognosisChoices.NORMAL,
+        1:PrognosisChoices.MILD,
+        2:PrognosisChoices.MODERATE,
+        3:PrognosisChoices.SEVERE,
+        4:PrognosisChoices.PROLIFERATIVE
+    }
+
+    return API_RESULT_MAPPING[api_result]

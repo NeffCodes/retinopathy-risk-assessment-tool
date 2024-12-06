@@ -4,8 +4,8 @@ from django.conf import settings
 from django.http import JsonResponse
 from .models import RetinaPhoto as RetinaPhotoModel
 from .forms import RetinaForm
-from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db
-from .choices import StatusChoices, PrognosisChoices
+from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db, get_prognosis_choice
+from .choices import StatusChoices
 from patients.models import Patient as PatientModel
 
 
@@ -97,16 +97,8 @@ def analyze_retina_photo(request, id):
     
     # Update the status and prognosis of the image
     
-    # Map the result to a prognosis choice
-    API_RESULT_MAPPING = {
-        0:PrognosisChoices.NORMAL,
-        1:PrognosisChoices.MILD,
-        2:PrognosisChoices.MODERATE,
-        3:PrognosisChoices.SEVERE,
-        4:PrognosisChoices.PROLIFERATIVE
-    }
-    print(f"Mapped Result: {API_RESULT_MAPPING.get(response_result)} ")
-    prognosis_choice = API_RESULT_MAPPING.get(response_result)
+    prognosis_choice = get_prognosis_choice(response_result)
+    
     image.prognosis = prognosis_choice
     image.status = StatusChoices.DONE
     image.save()
@@ -117,4 +109,5 @@ def analyze_retina_photo(request, id):
     print(f"Response: {response_result}")
     print('+============================')
     print('/n')
-    return JsonResponse(response_result)
+    # return JsonResponse({"message": "Image analyzed successfully."})
+    return redirect("patients:patient_view", id=patient_id)
