@@ -11,6 +11,7 @@ from .utils import (
 )
 from .choices import StatusChoices
 from django.contrib import messages
+import json
 
 
 def upload_retina_photo(request, patient):
@@ -87,18 +88,19 @@ def analyze_retina_photo(request, id):
         return HttpResponse(status=204)
 
     try:
+
         api_url = settings.AGENT_URL + "/analyze"
+        image_file = image.image
+        data = {"image_url": image_file.url, "image_id": image.cloudinary_public_id}
 
-        image.status = StatusChoices.PENDING
-        image.save()
-
-        response = requests.post(api_url)
+        response = requests.post(api_url, json=data)
         response.raise_for_status()
         response_data = response.json()
         response_result = response_data.get("result")
     except Exception as e:
         messages.error(request, f"Failed to analyze image: {e}")
-        return Http404("Failed to analyze image.")
+        print(f"Failed to analyze image: {e}")
+        raise Http404("Failed to analyze image.")
 
     # Update the status and prognosis of the image
     prognosis_choice = get_prognosis_choice(response_result)
