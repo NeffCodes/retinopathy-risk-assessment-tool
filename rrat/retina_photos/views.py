@@ -1,12 +1,11 @@
 import requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.conf import settings
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from .models import RetinaPhoto as RetinaPhotoModel
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db, get_prognosis_choice
 from .choices import StatusChoices
-from patients.models import Patien as PatientModel
 from django.contrib import messages
 
 
@@ -79,8 +78,8 @@ def analyze_retina_photo(request, id):
     # Verify image has not been processed so 
     #that it won't be analyzed multiple times
     if image.status == StatusChoices.DONE or image.status == StatusChoices.PENDING:
-        messages.error(request, "Image has already been analyzed.")
-        return redirect("patients:patient_view", id=patient_id)
+        messages.info(request, "Image has already been analyzed.")
+        return HttpResponse(status=204)
 
     try:
         api_url = settings.AGENT_URL + '/analyze'
@@ -102,11 +101,12 @@ def analyze_retina_photo(request, id):
     image.status = StatusChoices.DONE
     image.save()
 
+    print('\n+============================')
     print(f"Retina photo analyzed: {image}")
+    print(f"Response: {response_result}")
     print(f"Prognosis: {prognosis_choice}")
     print(f"Status: {image.status}")
-    print(f"Response: {response_result}")
-    print('+============================')
-    print('/n')
+    print('+============================\n')
+
     messages.success(request, "Image successfully analyzed.")
     return redirect("patients:patient_view", id=patient_id)
