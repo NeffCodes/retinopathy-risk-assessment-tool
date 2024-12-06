@@ -1,8 +1,12 @@
+import requests
 from django.shortcuts import get_object_or_404, redirect, render
+from django.conf import settings
+from django.http import JsonResponse
 from .models import RetinaPhoto as RetinaPhotoModel
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db
 from .choices import StatusChoices
+
 
 
 def upload_retina_photo(request, patient):
@@ -64,3 +68,16 @@ def delete_retina_photo(request, id):
     context["patient_id"] = patient_id
     context["photo"] = retina_image
     return render(request, 'retina_photos/photo_confirm_delete.html', context)
+
+def analyze_retina_photo(request, id):
+    api_url = settings.AGENT_URL
+    print(f"API URL: {api_url}")
+
+    try:
+        response = requests.get(api_url)
+        print(f"Response: {response}")
+    except Exception as e:
+        print(f"Error: {e}")
+    
+    result = response.json()
+    return JsonResponse(result)

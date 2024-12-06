@@ -47,7 +47,6 @@ def destroy_cloudinary_retina_image(public_id):
     print(f"= Cloudinary Destroy Response: {public_id} {cloud}")
     return cloud
 
-
 def hard_delete_image_from_all_db(image_obj):
     """
     This function trys to delete an image from both cloudinary and local db

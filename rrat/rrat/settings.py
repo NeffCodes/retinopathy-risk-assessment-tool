@@ -24,6 +24,8 @@ CLOUDINARY_CLOUD_NAME=os.getenv('CLOUDINARY_CLOUD_NAME')
 CLOUDINARY_API_KEY=os.getenv('CLOUDINARY_API_KEY')
 CLOUDINARY_API_SECRET=os.getenv('CLOUDINARY_API_SECRET')
 
+AGENT_URL=os.getenv('AGENT_API_URL')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
