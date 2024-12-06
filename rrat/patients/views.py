@@ -10,7 +10,7 @@ from retina_photos.models import RetinaPhoto
 from retina_photos.forms import RetinaForm
 
 
-@login_required(login_url='users:login')  # Protect the patients_list view
+@login_required(login_url="users:login")  # Protect the patients_list view
 def patients_list(request):
     """
     Patient page to view a full list of patients, with an option to add new patients.
@@ -23,18 +23,20 @@ def patients_list(request):
     if form.is_valid():
         # Create a patient instance without saving yet
         patient_instance = form.save(commit=False)
-        
+
         # Set the patient's user
         patient_instance.user = request.user
 
         # Handle avatar image upload
-        if request.FILES.get('avatar'):
-            image_file = request.FILES['avatar']
+        if request.FILES.get("avatar"):
+            image_file = request.FILES["avatar"]
             set_cloudinary_public_id(patient_instance)
-            result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
+            result = upload_cloudinary_avatar(
+                image_file, patient_instance.cloudinary_public_id
+            )
 
-            if result.get('url'):
-                patient_instance.avatar = result['url']
+            if result.get("url"):
+                patient_instance.avatar = result["url"]
             else:
                 messages.error(request, "Failed to upload avatar to Cloudinary.")
 
@@ -47,16 +49,20 @@ def patients_list(request):
             messages.error(request, "Please correct the form errors below.")
 
     # Fetch all non-hidden patients from the database
-    patients = PatientModel.objects.filter(user=request.user).exclude(hidden=True).order_by('last_name')
+    patients = (
+        PatientModel.objects.filter(user=request.user)
+        .exclude(hidden=True)
+        .order_by("last_name")
+    )
 
     # Set context for rendering
-    context['form'] = form
-    context['patients'] = patients
+    context["form"] = form
+    context["patients"] = patients
 
-    return render(request, 'patients/patients_list.html', context)
+    return render(request, "patients/patients_list.html", context)
 
 
-@login_required(login_url='users:login')  # Protect the view_patient view
+@login_required(login_url="users:login")  # Protect the view_patient view
 @check_patient_hidden
 @check_permission_to_view_patient
 def view_patient(request, id):
@@ -68,8 +74,14 @@ def view_patient(request, id):
     patient = get_object_or_404(PatientModel, id=id)
 
     # Retrieve retina images associated with the patient
-    unprocessed_images = RetinaPhoto.objects.filter(patient=patient, status='unprocessed').order_by('-date_created')
-    processed_images = RetinaPhoto.objects.filter(patient=patient).exclude(status='unprocessed').order_by('-date_updated')
+    unprocessed_images = RetinaPhoto.objects.filter(
+        patient=patient, status="unprocessed"
+    ).order_by("-date_created")
+    processed_images = (
+        RetinaPhoto.objects.filter(patient=patient)
+        .exclude(status="unprocessed")
+        .order_by("-date_updated")
+    )
 
     # If a POST request is made, delegate to the upload logic
     if request.method == "POST":
@@ -84,13 +96,13 @@ def view_patient(request, id):
         "form": form,
         "patient": patient,
         "images_processed": processed_images,
-        "images_unprocessed": unprocessed_images
+        "images_unprocessed": unprocessed_images,
     }
 
-    return render(request, 'patients/view_patient.html', context)
+    return render(request, "patients/view_patient.html", context)
 
 
-@login_required(login_url='users:login')  # Protect the update_patient view
+@login_required(login_url="users:login")  # Protect the update_patient view
 @check_patient_hidden
 @check_permission_to_view_patient
 def update_patient(request, id):
@@ -107,18 +119,22 @@ def update_patient(request, id):
         patient_instance = form.save(commit=False)
 
         # Handle avatar image update
-        if request.FILES.get('avatar'):
-            image_file = request.FILES['avatar']
+        if request.FILES.get("avatar"):
+            image_file = request.FILES["avatar"]
             cloud = destroy_cloudinary_image(patient_instance.cloudinary_public_id)
 
-            if cloud.get('result') == 'ok':
+            if cloud.get("result") == "ok":
                 set_cloudinary_public_id(patient_instance)
-                result = upload_cloudinary_avatar(image_file, patient_instance.cloudinary_public_id)
+                result = upload_cloudinary_avatar(
+                    image_file, patient_instance.cloudinary_public_id
+                )
 
-                if result.get('url'):
-                    patient_instance.avatar = result['url']
+                if result.get("url"):
+                    patient_instance.avatar = result["url"]
                 else:
-                    messages.error(request, "Failed to upload new avatar to Cloudinary.")
+                    messages.error(
+                        request, "Failed to upload new avatar to Cloudinary."
+                    )
                     return redirect("patients:list")
 
         # Save updated patient instance
@@ -131,10 +147,10 @@ def update_patient(request, id):
     context["form"] = form
     context["patient"] = patient
 
-    return render(request, 'patients/update_patient.html', context)
+    return render(request, "patients/update_patient.html", context)
 
 
-@login_required(login_url='users:login')  # Protect the delete_patient view
+@login_required(login_url="users:login")  # Protect the delete_patient view
 @check_patient_hidden
 @check_permission_to_view_patient
 def delete_patient(request, id):
