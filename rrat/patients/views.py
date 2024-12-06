@@ -43,7 +43,8 @@ def patients_list(request):
         messages.success(request, "Patient added successfully!")
         return redirect("patients:list")
     else:
-        messages.error(request, "Please correct the errors below.")
+        if form.errors:
+            messages.error(request, "Please correct the form errors below.")
 
     # Fetch all non-hidden patients from the database
     patients = PatientModel.objects.filter(user=request.user).exclude(hidden=True).order_by('last_name')
