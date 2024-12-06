@@ -18,11 +18,22 @@
   <!-- Section to display existing retina photos for the patient -->
   <section class="p-4">
     <h2 class="text-lg font-semibold mt-8">Existing Retinal Photos</h2>
-    <div class="image-gallery mt-4 grid gap-4 grid-flow-col auto-cols-max">    
-      {% for photo in images %}
-        {% include "retina_photos/partials/retina_photo_card.html" with photo=photo %}
+    <div class="mt-4 grid grid-cols-4 gap-4 py-4">    
+      {% for photo in images_unprocessed %}
+          {% include "retina_photos/partials/retina_photo_card.html" with photo=photo %}
       {% empty %}
-        <p class='col-span-full'>No retinal photos are available for this patient.</p>
+        <p class='col-span-full'>No retinal photos are available to process for this patient.</p>
+      {% endfor %}
+    </div> 
+
+    <hr class="my-8 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-25 dark:via-neutral-400" />
+
+    <h2 class="text-lg font-semibold mt-8">Processed Retinal Photos</h2>
+    <div class="mt-4 grid grid-cols-4 gap-4 py-4">    
+      {% for photo in images_processed %}
+          {% include "retina_photos/partials/retina_photo_card.html" with photo=photo %}
+      {% empty %}
+        <p class='col-span-full'>No retinal photos have been processed for this patient.</p>
       {% endfor %}
     </div> 
   </section>

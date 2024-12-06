@@ -816,6 +816,38 @@ video {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.grid-cols-\[repeat\(auto-fit\2c minmax\(16rem\2c 1fr\)\)\] {
+  grid-template-columns: repeat(auto-fit,minmax(16rem,1fr));
+}
+
+.grid-cols-\[fit-content\] {
+  grid-template-columns: fit-content;
+}
+
+.grid-cols-\[fit-content\(theme\(spacing\.32\)\)\] {
+  grid-template-columns: fit-content(8rem);
+}
+
+.grid-cols-\[minmax\(16rem\2c 1fr\)\] {
+  grid-template-columns: minmax(16rem,1fr);
+}
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-cols-\[repeat\(auto-fit\2c minmax\(16rem\2c 16\)\)\] {
+  grid-template-columns: repeat(auto-fit,minmax(16rem,16));
+}
+
+.grid-cols-\[repeat\(auto-fit\2c minmax\(16rem\2c 16rem\)\)\] {
+  grid-template-columns: repeat(auto-fit,minmax(16rem,16rem));
+}
+
+.grid-cols-\[repeat\(auto-fit\2c minmax\(1fr\2c 16rem\)\)\] {
+  grid-template-columns: repeat(auto-fit,minmax(1fr,16rem));
+}
+
 .flex-col {
   flex-direction: column;
 }

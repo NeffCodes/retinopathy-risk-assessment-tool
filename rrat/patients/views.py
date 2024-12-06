@@ -68,7 +68,8 @@ def view_patient(request, id):
     patient = get_object_or_404(PatientModel, id=id)
 
     # Retrieve retina images associated with the patient
-    images = RetinaPhoto.objects.filter(patient=patient).order_by('-date_created')
+    unprocessed_images = RetinaPhoto.objects.filter(patient=patient, status='unprocessed').order_by('-date_created')
+    processed_images = RetinaPhoto.objects.filter(patient=patient).exclude(status='unprocessed').order_by('-date_updated')
 
     # If a POST request is made, delegate to the upload logic
     if request.method == "POST":
@@ -82,7 +83,8 @@ def view_patient(request, id):
     context = {
         "form": form,
         "patient": patient,
-        "images": images,
+        "images_processed": processed_images,
+        "images_unprocessed": unprocessed_images
     }
 
     return render(request, 'patients/view_patient.html', context)
