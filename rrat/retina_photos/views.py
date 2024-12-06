@@ -6,7 +6,8 @@ from .models import RetinaPhoto as RetinaPhotoModel
 from .forms import RetinaForm
 from .utils import upload_cloudinary_retina, hard_delete_image_from_all_db, get_prognosis_choice
 from .choices import StatusChoices
-from patients.models import Patient as PatientModel
+from patients.models import Patien as PatientModel
+from django.contrib import messages
 
 
 
@@ -71,14 +72,17 @@ def delete_retina_photo(request, id):
     return render(request, 'retina_photos/photo_confirm_delete.html', context)
 
 def analyze_retina_photo(request, id):
+    # Retrieve the image from the database
+    image = get_object_or_404(RetinaPhotoModel, id=id)
     
-    # TODO: Add check if image already processed or pending
+    # Verify image has not been processed so that it won't be analyzed multiple times
+    if image.status == StatusChoices.DONE or image.status == StatusChoices.PENDING:
+        messages.error(request, "Image has already been analyzed.")
+        return redirect("patients:patient_view", id=image.patient.id)
 
     api_url = settings.AGENT_URL + '/analyze'
     print(f"API URL: {api_url}")
 
-    # Retrieve the image from the database
-    image = get_object_or_404(RetinaPhotoModel, id=id)
     # get patient ID
     patient_id = image.patient.id
     patient = PatientModel.objects.get(id=patient_id)
@@ -96,9 +100,7 @@ def analyze_retina_photo(request, id):
         return JsonResponse({'error': f'API request failed: {e}'}, status=500)
     
     # Update the status and prognosis of the image
-    
     prognosis_choice = get_prognosis_choice(response_result)
-    
     image.prognosis = prognosis_choice
     image.status = StatusChoices.DONE
     image.save()
