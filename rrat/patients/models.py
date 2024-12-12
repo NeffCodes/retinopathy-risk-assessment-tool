@@ -4,18 +4,16 @@ import uuid
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Patient(models.Model):
     id = models.UUIDField(
-        primary_key=True, 
-        default=uuid.uuid4, 
-        editable=False,
-        unique=True
+        primary_key=True, default=uuid.uuid4, editable=False, unique=True
     )
     user = models.ForeignKey(
-        User, 
+        User,
         on_delete=models.CASCADE,
-        related_name='patients',
+        related_name="patients",
         null=False,
         blank=False,
     )
@@ -25,19 +23,22 @@ class Patient(models.Model):
     hidden = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    avatar = CloudinaryField('avatar', null=True, blank=True, folder='rrat/avatars')
+    avatar = CloudinaryField("avatar", null=True, blank=True, folder="rrat/avatars")
     cloudinary_public_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.full_name} - {self.id}"
-        
+
     @property
     def age(self):
         """Returns the person's current age"""
         from datetime import date
+
         today = date.today()
         born = self.date_of_birth
-        age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+        age = (
+            today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+        )
         return age
 
     @property
