@@ -7,7 +7,6 @@ from .forms import RetinaForm
 from .utils import (
     upload_cloudinary_retina,
     hard_delete_image_from_all_db,
-    get_prognosis_choice,
 )
 from .choices import StatusChoices
 from django.contrib import messages
