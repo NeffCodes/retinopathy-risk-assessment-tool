@@ -96,22 +96,29 @@ def analyze_retina_photo(request, id):
         response = requests.post(api_url, json=data)
         response.raise_for_status()
         response_data = response.json()
-        response_result = response_data.get("result")
+
+        prognosis_choice = response_data.get("prognosis")
+        confidence = response_data.get("confidence")
+        image_id = response_data.get("image_id")
     except Exception as e:
         messages.error(request, f"Failed to analyze image: {e}")
         print(f"Failed to analyze image: {e}")
         raise Http404("Failed to analyze image.")
 
     # Update the status and prognosis of the image
-    prognosis_choice = get_prognosis_choice(response_result)
-    image.prognosis = prognosis_choice
-    image.status = StatusChoices.DONE
-    image.save()
+    if image_id == image.cloudinary_public_id:
+        image.prognosis = prognosis_choice
+        image.status = StatusChoices.DONE
+        image.save()
+    else:
+        print("Image ID does not match cloudinary public ID")
 
     print("\n+============================")
     print(f"Retina photo analyzed: {image}")
-    print(f"Response: {response_result}")
+    print(f"Response: {response_data}")
     print(f"Prognosis: {prognosis_choice}")
+    print(f"Confidence: {confidence}")
+    print(f"Image ID: {image_id}")
     print(f"Status: {image.status}")
     print("+============================\n")
 
