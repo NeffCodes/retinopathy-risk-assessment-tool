@@ -28,6 +28,7 @@ We do have additional ideas for stretch goals that are listed below, but are not
 | ---      | ---       |
 | **Image Upload** | Securely upload patient retinal images for analysis. |
 | **Patient Data Input** | Add patient details such as name, date of birth, and medical history to enhance analysis accuracy. |
+| **Authorization& Authentication** | We ensured data privacy by implementing secure user authentication. Users in Clinic A can only view patients associated with Clinic A, and the same applies to Clinic B. |
 | **Model-Driven Analysis** | Utilizes a trained machine learning model to assess the risk of diabetic retinopathy. |
 | **Display Results** | Presents a clear and concise prognosis, helping clinicians make informed decisions. 
 | **Additional Resources**| May add resources and next steps, such as links to Mayo Clinic or NIH, after prognosis.
