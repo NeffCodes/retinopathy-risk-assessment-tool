@@ -4,7 +4,8 @@
 
 The Retinopathy Risk Assessment Tool (RRAT) is a data visualization web application designed to assist clinics in the early detection and assessment of diabetic retinopathy. This tool allows medical professionals to upload patient images and input relevant patient data, receiving a detailed analysis from a machine learning model that predicts the likelihood of the patient developing diabetic retinopathy.
 
-## Planned Features
+## Demo Video
+![View our final presentation of our application on youtube!](https://www.youtube.com/watch?v=yzKxd-KEbnk&t=2828s)
 
 ## Features
 - Image Upload: Securely upload patient retinal images for analysis.
