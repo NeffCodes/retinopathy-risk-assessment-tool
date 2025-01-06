@@ -40,11 +40,8 @@ We do have additional ideas for stretch goals that are listed below, but are not
 
 ## Technology Stack
 
-Please note that this is our idea for our tech stack going in.
-This is subject to change as we progress through development.
-
 - **Backend:** Python + Django
-- **Frontend:** Django Templates + Tailwind.css  
+- **Frontend:** Django Templates + Tailwind CSS  
 - **Database:** SQLite
 - **Python Librariies:**
   - TensorFlow(for machine learning models)
@@ -54,25 +51,18 @@ This is subject to change as we progress through development.
   - OpenCV (for image processing)
   - Scikit-learn (for additional machine learning tools)
 - Other Tools:
-  - Postman (API testing)
+  - Bruno / Postman (API testing)
   - Swagger (API documentation)
   - Slack (Team communication)
   - GitHub (Project Management and Version control)
-  - 
  
-## Machine Leaning Model
+## Machine Learning Model
 The Retinopathy Risk Assessment Tool (RRAT) uses a Convolutional Neural Network (CNN) for image classification, specifically trained to identify the risk of diabetic retinopathy from retinal images. The model is built using TensorFlow and Keras libraries, using the power of CNNs to automatically detect features in retinal images that may indicate the presence of diabetic retinopathy.The model code is housed in a separate repository.
 
 **Model Repository**: [EyeQ Diabetic Retinopathy Model](https://github.com/SNMeans/rrat-diabetic-retinopathy-CNNmodel)
 
 ### Type of Learning
 This project employs supervised learning, where the model is trained on a labeled dataset of retinal images. Each image in the training set is associated with a label indicating the severity of diabetic retinopathy (e.g., No_DR, Mild, Moderate, Severe, Proliferative). The model learns to map input images to these labels, and once trained, it can predict the risk level for new, unseen images.
-
-- **Other Tools:**
-  - Postman (API testing)
-  - Slack (Team communication)
-  - GitHub (Version control)
-  - Github Projects (Project management)
 
 ## Setup and Installation
 
